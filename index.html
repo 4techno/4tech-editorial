@@ -3,913 +3,608 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>4TECH — Engineering, Robotics & Embedded Systems</title>
+  <title>4TECH — Bold Ideas That Start With Vision</title>
   <meta name="description" content="Independent engineering by Mohammed Vashir in Kalpakkam, India. Explore embedded systems, robotics, RF research, prototype development, and practical learning.">
-  <meta property="og:title" content="4TECH — Engineering, Robotics & Embedded Systems">
+  <meta property="og:title" content="4TECH — Bold Ideas That Start With Vision">
   <meta property="og:description" content="Independent engineering across embedded systems, robotics, RF research, and practical prototyping.">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="assets/og-cover.svg">
+  <meta property="og:image" content="assets/hands-hero-2x.png">
   <meta name="theme-color" content="#F5F5F0">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%231a1a1a'/><text x='16' y='22' text-anchor='middle' font-family='sans-serif' font-size='16' font-weight='700' fill='%23fff'>4T</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    /* ═══════════════════════════════════════════
-       RESET & TOKENS
-       ═══════════════════════════════════════════ */
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --bg-primary: #F5F5F0;
-      --bg-dark: #0A0A0A;
-      --bg-card: #FFFFFF;
-      --text-primary: #1A1A1A;
-      --text-secondary: #6B6B6B;
-      --text-light: #999999;
-      --text-white: #FFFFFF;
+      --bg: #F5F5F0;
+      --dark: #0A0A0A;
+      --card: #FFFFFF;
+      --t1: #1A1A1A;
+      --t2: #6B6B6B;
+      --t3: #999999;
+      --tw: #FFFFFF;
       --accent: #000000;
       --border: #E0E0E0;
-      --halftone: #D0D0CB;
-      --serif: 'DM Serif Display', Georgia, 'Times New Roman', serif;
-      --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --serif: 'DM Serif Display', Georgia, serif;
+      --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       --ease: cubic-bezier(.4, 0, .2, 1);
-      --section-pad: 120px;
-      --max-w: 1180px;
+      --sp: 120px;
+      --mw: 1180px;
     }
 
-    html { scroll-behavior: smooth; font-size: 16px; }
-
+    html { scroll-behavior: smooth; }
     body {
       font-family: var(--sans);
-      color: var(--text-primary);
-      background: var(--bg-primary);
-      line-height: 1.6;
+      color: var(--t1);
+      background: var(--bg);
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
 
-    /* ── Halftone page texture ── */
+    /* Authentic Halftone Texture overlay */
     body::before {
       content: '';
+      position: fixed; inset: 0;
+      pointer-events: none; z-index: 0;
+      opacity: .35;
+      background-image: radial-gradient(#C8C8C2 1px, transparent 1px);
+      background-size: 10px 10px;
+    }
+
+    /* ═══════════════════════════════════════
+       CINEMATIC OPENING TOUCH ANIMATION
+       ═══════════════════════════════════════ */
+    #intro-stage {
       position: fixed;
       inset: 0;
+      z-index: 99999;
+      background: var(--bg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      transition: opacity 0.8s var(--ease), visibility 0.8s;
+    }
+
+    #intro-stage::before {
+      content: '';
+      position: absolute; inset: 0;
       pointer-events: none;
-      z-index: 0;
-      opacity: .3;
-      background-image: radial-gradient(var(--halftone) 1px, transparent 1px);
-      background-size: 12px 12px;
+      opacity: .35;
+      background-image: radial-gradient(#C8C8C2 1px, transparent 1px);
+      background-size: 10px 10px;
     }
 
-    /* ── Skip link ── */
-    .skip-link {
+    .intro-header-hint {
       position: absolute;
-      top: -100%;
-      left: 16px;
-      background: var(--accent);
-      color: var(--text-white);
-      padding: 12px 24px;
-      border-radius: 0 0 8px 8px;
-      font-size: 14px;
-      font-weight: 500;
-      text-decoration: none;
-      z-index: 9999;
-      transition: top .2s var(--ease);
+      top: 36px;
+      text-align: center;
+      z-index: 5;
+      opacity: 0;
+      animation: fadeIn 0.8s var(--ease) 0.3s forwards;
     }
-    .skip-link:focus { top: 0; }
-
-    /* ═══════════════════════════════════════════
-       UTILITIES
-       ═══════════════════════════════════════════ */
-    .container {
-      max-width: var(--max-w);
-      margin: 0 auto;
-      padding: 0 32px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .kicker {
+    .intro-header-hint .logo {
       font-family: var(--sans);
-      font-size: 12px;
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: var(--t1);
+      text-transform: uppercase;
+    }
+    .intro-header-hint p {
+      font-size: 11px;
       font-weight: 600;
       letter-spacing: 3px;
       text-transform: uppercase;
-      color: var(--text-light);
-      margin-bottom: 20px;
+      color: var(--t3);
+      margin-top: 6px;
     }
 
+    .intro-hands-viewport {
+      position: relative;
+      width: 100%;
+      max-width: 1600px;
+      height: 60vh;
+      min-height: 380px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+    }
+
+    /* Robot Hand (Comes from Left) */
+    .intro-hand-robot {
+      position: absolute;
+      right: 50%;
+      top: 50%;
+      height: clamp(240px, 40vh, 380px);
+      width: auto;
+      max-width: none;
+      transform: translate(calc(-100vw), -50%);
+      transition: transform 2.1s cubic-bezier(0.16, 1, 0.3, 1);
+      mix-blend-mode: multiply;
+      filter: contrast(1.08) drop-shadow(0 15px 30px rgba(0,0,0,0.08));
+      will-change: transform;
+      z-index: 2;
+    }
+
+    /* Human Hand (Comes from Right) */
+    .intro-hand-human {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      height: clamp(240px, 40vh, 380px);
+      width: auto;
+      max-width: none;
+      transform: translate(100vw, -50%);
+      transition: transform 2.1s cubic-bezier(0.16, 1, 0.3, 1);
+      mix-blend-mode: multiply;
+      filter: contrast(1.08) drop-shadow(0 15px 30px rgba(0,0,0,0.08));
+      will-change: transform;
+      z-index: 2;
+    }
+
+    /* Contact touch states: index fingers meet at center */
+    .touching .intro-hand-robot {
+      transform: translate(6px, -50%) !important;
+    }
+    .touching .intro-hand-human {
+      transform: translate(-6px, -50%) !important;
+    }
+
+    /* Touch Spark Burst */
+    .touch-spark {
+      position: absolute;
+      left: 50%;
+      top: calc(50% - 100px);
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #FFFFFF;
+      box-shadow: 0 0 20px 8px rgba(255, 255, 255, 0.95), 0 0 45px 15px rgba(26, 26, 26, 0.4);
+      transform: translate(-50%, -50%) scale(0);
+      opacity: 0;
+      z-index: 10;
+      pointer-events: none;
+    }
+
+    .touch-spark.ignite {
+      animation: sparkPulse 0.9s cubic-bezier(0.1, 0.9, 0.2, 1) forwards;
+    }
+
+    @keyframes sparkPulse {
+      0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 0;
+      }
+      30% {
+        transform: translate(-50%, -50%) scale(5);
+        opacity: 1;
+        box-shadow: 0 0 60px 25px rgba(255, 255, 255, 1), 0 0 100px 40px rgba(0, 0, 0, 0.6);
+      }
+      70% {
+        transform: translate(-50%, -50%) scale(18);
+        opacity: 0.9;
+      }
+      100% {
+        transform: translate(-50%, -50%) scale(50);
+        opacity: 0;
+      }
+    }
+
+    .touch-ripple {
+      position: absolute;
+      left: 50%;
+      top: calc(50% - 100px);
+      border-radius: 50%;
+      border: 1.5px solid rgba(26, 26, 26, 0.3);
+      transform: translate(-50%, -50%) scale(0);
+      opacity: 0;
+      z-index: 4;
+      pointer-events: none;
+    }
+    .touch-ripple.ignite {
+      animation: rippleExpand 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    }
+    @keyframes rippleExpand {
+      0% { width: 10px; height: 10px; opacity: 0.8; transform: translate(-50%, -50%) scale(0); }
+      100% { width: 800px; height: 800px; opacity: 0; transform: translate(-50%, -50%) scale(1); }
+    }
+
+    .intro-tagline {
+      position: absolute;
+      bottom: 40px;
+      font-size: 13px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--t2);
+      opacity: 0;
+      animation: fadeIn 0.8s var(--ease) 0.5s forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ═══════════════════════════════════════
+       SITE WRAPPER
+       ═══════════════════════════════════════ */
+    #site-wrap {
+      opacity: 0;
+      transition: opacity 0.8s var(--ease);
+    }
+    #site-wrap.visible {
+      opacity: 1;
+    }
+
+    /* ═══════════════════════════════════════
+       UTILITIES & NAVIGATION
+       ═══════════════════════════════════════ */
+    .container { max-width: var(--mw); margin: 0 auto; padding: 0 32px; position: relative; z-index: 1; }
+    .skip-link {
+      position: absolute; top: -100%; left: 16px;
+      background: var(--accent); color: var(--tw); padding: 12px 24px;
+      border-radius: 0 0 8px 8px; font-size: 14px; font-weight: 500;
+      text-decoration: none; z-index: 9999; transition: top .2s;
+    }
+    .skip-link:focus { top: 0; }
+
+    .kicker {
+      font-size: 12px; font-weight: 600; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--t3); margin-bottom: 20px;
+    }
     .section-title {
-      font-family: var(--serif);
-      font-size: clamp(36px, 4.5vw, 56px);
-      line-height: 1.15;
-      color: var(--text-primary);
-      margin-bottom: 20px;
+      font-family: var(--serif); font-size: clamp(36px, 4.5vw, 56px);
+      line-height: 1.15; color: var(--t1); margin-bottom: 20px;
     }
-
-    .section-desc {
-      font-size: 17px;
-      color: var(--text-secondary);
-      line-height: 1.7;
-      max-width: 540px;
-    }
-
+    .section-desc { font-size: 17px; color: var(--t2); line-height: 1.7; max-width: 540px; }
     section { scroll-margin-top: 80px; }
 
-    /* ═══════════════════════════════════════════
-       BUTTONS
-       ═══════════════════════════════════════════ */
+    /* Buttons */
     .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-family: var(--sans);
-      font-size: 14px;
-      font-weight: 500;
-      text-decoration: none;
-      border: none;
-      cursor: pointer;
-      transition: all .3s var(--ease);
-      white-space: nowrap;
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: var(--sans); font-size: 14px; font-weight: 500;
+      text-decoration: none; border: none; cursor: pointer;
+      transition: all .3s var(--ease); white-space: nowrap;
     }
-
-    .btn-primary {
-      background: var(--accent);
-      color: var(--text-white);
-      padding: 14px 32px;
-      border-radius: 100px;
-    }
-    .btn-primary:hover, .btn-primary:focus-visible {
-      background: #333;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(0,0,0,.15);
-    }
-
-    .btn-outline {
-      background: transparent;
-      color: var(--text-primary);
-      padding: 14px 32px;
-      border-radius: 100px;
-      border: 1.5px solid var(--text-primary);
-    }
-    .btn-outline:hover, .btn-outline:focus-visible {
-      background: var(--accent);
-      color: var(--text-white);
-      border-color: var(--accent);
-      transform: translateY(-2px);
-    }
-
-    .btn-ghost {
-      background: transparent;
-      color: var(--text-secondary);
-      padding: 4px 0;
-      border-bottom: 1px solid var(--border);
-      border-radius: 0;
-      font-size: 15px;
-    }
-    .btn-ghost:hover, .btn-ghost:focus-visible {
-      color: var(--text-primary);
-      border-color: var(--text-primary);
-    }
-
-    .btn-white {
-      background: var(--text-white);
-      color: var(--text-primary);
-      padding: 16px 36px;
-      border-radius: 100px;
-    }
-    .btn-white:hover, .btn-white:focus-visible {
-      background: #E8E8E8;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(0,0,0,.15);
-    }
-
-    .btn-outline-w {
-      background: transparent;
-      color: var(--text-white);
-      padding: 16px 36px;
-      border-radius: 100px;
-      border: 1.5px solid rgba(255,255,255,.25);
-    }
-    .btn-outline-w:hover, .btn-outline-w:focus-visible {
-      border-color: #fff;
-      background: rgba(255,255,255,.08);
-      transform: translateY(-2px);
-    }
-
-    .arrow::after {
-      content: '↗';
-      font-size: 15px;
-      display: inline-block;
-      transition: transform .3s var(--ease);
-    }
+    .btn-p { background: var(--accent); color: var(--tw); padding: 14px 34px; border-radius: 100px; font-weight: 500; }
+    .btn-p:hover { background: #333; transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,0,0,.18); }
+    .btn-g { background: 0; color: var(--t2); padding: 4px 0; border-bottom: 1px solid var(--border); border-radius: 0; font-size: 15px; }
+    .btn-g:hover { color: var(--t1); border-color: var(--t1); }
+    .btn-w { background: #fff; color: var(--t1); padding: 16px 36px; border-radius: 100px; }
+    .btn-w:hover { background: #E8E8E8; transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,0,0,.15); }
+    .btn-ow { background: 0; color: #fff; padding: 16px 36px; border-radius: 100px; border: 1.5px solid rgba(255,255,255,.25); }
+    .btn-ow:hover { border-color: #fff; background: rgba(255,255,255,.08); transform: translateY(-2px); }
+    .arrow::after { content: '↗'; font-size: 15px; display: inline-block; transition: transform .3s var(--ease); }
     .arrow:hover::after { transform: translate(3px, -3px); }
 
-    /* ═══════════════════════════════════════════
-       NAVIGATION
-       ═══════════════════════════════════════════ */
-    .nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      padding: 20px 0;
-      transition: all .35s var(--ease);
-    }
-    .nav.scrolled {
-      background: rgba(245,245,240,.92);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      padding: 14px 0;
-      box-shadow: 0 1px 0 rgba(0,0,0,.06);
-    }
-    .nav .container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
+    /* Nav */
+    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 22px 0; transition: all .35s var(--ease); }
+    .nav.scrolled { background: rgba(245,245,240,.92); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); padding: 14px 0; box-shadow: 0 1px 0 rgba(0,0,0,.06); }
+    .nav .container { display: flex; align-items: center; justify-content: space-between; }
     .nav-left { display: flex; align-items: center; gap: 44px; }
-
-    .wordmark {
-      font-family: var(--sans);
-      font-size: 20px;
-      font-weight: 700;
-      letter-spacing: -.5px;
-      color: var(--text-primary);
-      text-decoration: none;
-      text-transform: uppercase;
-    }
-
+    .wordmark { font-family: var(--sans); font-size: 20px; font-weight: 700; letter-spacing: -.5px; color: var(--t1); text-decoration: none; text-transform: uppercase; }
     .nav-links { display: flex; list-style: none; gap: 32px; }
-    .nav-links a {
-      font-size: 14px;
-      color: var(--text-primary);
-      text-decoration: none;
-      position: relative;
-      transition: color .3s var(--ease);
-    }
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: -4px; left: 0;
-      width: 0; height: 1.5px;
-      background: var(--text-primary);
-      transition: width .3s var(--ease);
-    }
-    .nav-links a:hover::after,
-    .nav-links a:focus-visible::after { width: 100%; }
-
+    .nav-links a { font-size: 14px; color: var(--t1); text-decoration: none; position: relative; }
+    .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1.5px; background: var(--t1); transition: width .3s var(--ease); }
+    .nav-links a:hover::after, .nav-links a:focus-visible::after { width: 100%; }
     .nav-right { display: flex; align-items: center; gap: 20px; }
-
-    .nav-login {
-      font-size: 14px;
-      color: var(--text-primary);
-      text-decoration: none;
-      transition: color .3s var(--ease);
-    }
-    .nav-login:hover { color: var(--text-secondary); }
-
-    .nav-cta {
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--text-white);
-      background: var(--accent);
-      padding: 10px 22px;
-      border-radius: 100px;
-      text-decoration: none;
-      transition: all .3s var(--ease);
-    }
+    .nav-login { font-size: 14px; color: var(--t1); text-decoration: none; }
+    .nav-cta { font-size: 13px; font-weight: 500; color: var(--tw); background: var(--accent); padding: 10px 22px; border-radius: 100px; text-decoration: none; transition: all .3s var(--ease); }
     .nav-cta:hover { background: #333; transform: translateY(-1px); }
-
-    /* Hamburger */
-    .hamburger {
-      display: none;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 6px;
-      z-index: 110;
-    }
-    .hamburger span {
-      display: block;
-      width: 24px;
-      height: 2px;
-      background: var(--text-primary);
-      margin: 5px 0;
-      transition: all .3s var(--ease);
-    }
-
-    /* Mobile overlay */
-    .mobile-menu {
-      position: fixed;
-      inset: 0;
-      background: var(--bg-primary);
-      z-index: 105;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      gap: 28px;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity .3s var(--ease);
-    }
+    .hamburger { display: none; background: 0; border: 0; cursor: pointer; padding: 6px; z-index: 110; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--t1); margin: 5px 0; transition: all .3s var(--ease); }
+    .mobile-menu { position: fixed; inset: 0; background: var(--bg); z-index: 105; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 28px; opacity: 0; pointer-events: none; transition: opacity .3s var(--ease); }
     .mobile-menu.open { opacity: 1; pointer-events: auto; }
-    .mobile-menu a {
-      font-family: var(--serif);
-      font-size: 32px;
-      color: var(--text-primary);
-      text-decoration: none;
-      transition: color .2s;
-    }
-    .mobile-menu a:hover { color: var(--text-secondary); }
-    .mobile-close {
-      position: absolute;
-      top: 22px; right: 28px;
-      background: none;
-      border: none;
-      font-size: 32px;
-      cursor: pointer;
-      color: var(--text-primary);
-      line-height: 1;
-    }
+    .mobile-menu a { font-family: var(--serif); font-size: 32px; color: var(--t1); text-decoration: none; }
+    .mobile-close { position: absolute; top: 22px; right: 28px; background: 0; border: 0; font-size: 32px; cursor: pointer; color: var(--t1); }
 
-    /* ═══════════════════════════════════════════
-       HERO
-       ═══════════════════════════════════════════ */
+    /* ═══════════════════════════════════════
+       HERO — REDESIGNED EXACTLY LIKE PHOTO
+       ═══════════════════════════════════════ */
     .hero {
       min-height: 100vh;
       min-height: 100dvh;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: flex-start;
       align-items: center;
       text-align: center;
-      padding: 100px 32px 0;
+      padding: 130px 24px 40px;
       position: relative;
       overflow: hidden;
     }
 
-    .hero-content { position: relative; z-index: 2; max-width: 720px; }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 780px;
+      margin: 0 auto;
+    }
 
     .hero h1 {
       font-family: var(--serif);
-      font-size: clamp(48px, 7vw, 86px);
-      line-height: 1.08;
-      letter-spacing: -1px;
-      color: var(--text-primary);
-      margin-bottom: 24px;
+      font-size: clamp(52px, 7.5vw, 92px);
+      line-height: 1.05;
+      letter-spacing: -1.5px;
+      color: var(--t1);
+      margin-bottom: 22px;
+      font-weight: 400;
     }
 
     .hero-sub {
       font-size: 17px;
-      color: var(--text-secondary);
-      max-width: 480px;
-      margin: 0 auto 40px;
-      line-height: 1.7;
+      color: var(--t2);
+      max-width: 520px;
+      margin: 0 auto 34px;
+      line-height: 1.65;
     }
 
     .hero-actions {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 24px;
-      flex-wrap: wrap;
+      gap: 20px;
+      margin-bottom: 30px;
     }
 
-    /* Decorative atmospheres */
-    .atmos {
-      position: absolute;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(0,0,0,.03), transparent 70%);
-      pointer-events: none;
-      z-index: 0;
-    }
-    .atmos-1 { width: 600px; height: 600px; top: 5%; left: -200px; }
-    .atmos-2 { width: 500px; height: 500px; bottom: 8%; right: -150px; }
-
-    /* SVG hands container */
-    .hero-hands {
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 55%;
-      pointer-events: none;
+    /* THE ICONIC HANDS FROM THE PICTURE */
+    .hero-hands-wrap {
+      position: relative;
+      width: 100%;
+      max-width: 1100px;
+      margin: 10px auto 0;
       z-index: 1;
-      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
     }
 
-    /* ═══════════════════════════════════════════
-       CAPABILITY STRIP
-       ═══════════════════════════════════════════ */
+    .hero-hands-img {
+      width: 100%;
+      height: auto;
+      max-height: 380px;
+      object-fit: contain;
+      mix-blend-mode: multiply;
+      filter: contrast(1.05);
+      transition: transform 0.4s var(--ease);
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    .hero-hands-wrap:hover .hero-hands-img {
+      transform: scale(1.015);
+    }
+
+    .replay-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--t3);
+      padding: 6px 16px;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      background: rgba(255,255,255,0.6);
+      margin-top: -15px;
+      margin-bottom: 25px;
+      cursor: pointer;
+      transition: all 0.2s var(--ease);
+    }
+    .replay-badge:hover {
+      color: var(--t1);
+      border-color: var(--t1);
+      background: #FFFFFF;
+    }
+
+    /* ═══════════════════════════════════════
+       CAPABILITIES (Matching Photo Trust Bar)
+       ═══════════════════════════════════════ */
     .capabilities {
-      padding: 56px 0 72px;
-      border-top: 1px solid var(--border);
+      padding: 44px 0 64px;
       text-align: center;
       position: relative;
       z-index: 1;
     }
-
     .cap-label {
-      font-size: 14px;
-      font-style: italic;
-      color: var(--text-secondary);
-      margin-bottom: 32px;
+      font-size: 13px;
+      color: var(--t2);
+      margin-bottom: 28px;
+      letter-spacing: 0.5px;
     }
-
     .cap-row {
       display: flex;
       align-items: center;
       justify-content: center;
       flex-wrap: wrap;
-      gap: 12px 36px;
+      gap: 16px 38px;
     }
     .cap-item {
       font-size: 14px;
       font-weight: 600;
-      letter-spacing: .5px;
-      color: var(--text-primary);
-      opacity: .45;
-      transition: opacity .3s var(--ease);
+      letter-spacing: 0.5px;
+      color: var(--t1);
+      opacity: 0.65;
+      transition: opacity 0.3s;
     }
-    .cap-item:hover { opacity: .75; }
+    .cap-item:hover { opacity: 1; }
 
-    /* ═══════════════════════════════════════════
+    /* ═══════════════════════════════════════
        SERVICES
-       ═══════════════════════════════════════════ */
-    .services { padding: var(--section-pad) 0; position: relative; z-index: 1; }
-
-    .services-head {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 48px;
-      align-items: end;
-      margin-bottom: 72px;
-    }
-
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-
-    .card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 36px 28px;
-      position: relative;
-      overflow: hidden;
-      transition: transform .35s var(--ease), box-shadow .35s var(--ease);
-    }
-    .card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 3px;
-      background: var(--accent);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform .4s var(--ease);
-    }
-    .card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 20px 60px rgba(0,0,0,.08);
-    }
+       ═══════════════════════════════════════ */
+    .services { padding: var(--sp) 0; position: relative; z-index: 1; }
+    .services-head { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: end; margin-bottom: 72px; }
+    .card-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 36px 28px; position: relative; overflow: hidden; transition: transform .35s var(--ease), box-shadow .35s var(--ease); }
+    .card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform .4s var(--ease); }
+    .card:hover { transform: translateY(-6px); box-shadow: 0 20px 60px rgba(0,0,0,.08); }
     .card:hover::before { transform: scaleX(1); }
+    .card-icon { width: 48px; height: 48px; background: var(--bg); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
+    .card-icon svg { width: 22px; height: 22px; stroke: var(--t1); fill: none; stroke-width: 1.5; }
+    .card h3 { font-family: var(--serif); font-size: 21px; margin-bottom: 10px; }
+    .card p { font-size: 14px; color: var(--t2); line-height: 1.7; }
 
-    .card-icon {
-      width: 48px; height: 48px;
-      background: var(--bg-primary);
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 20px;
-    }
-    .card-icon svg { width: 22px; height: 22px; stroke: var(--text-primary); fill: none; stroke-width: 1.5; }
-
-    .card h3 {
-      font-family: var(--serif);
-      font-size: 21px;
-      margin-bottom: 10px;
-    }
-    .card p { font-size: 14px; color: var(--text-secondary); line-height: 1.7; }
-
-    /* ═══════════════════════════════════════════
+    /* ═══════════════════════════════════════
        ABOUT (dark)
-       ═══════════════════════════════════════════ */
-    .about {
-      padding: var(--section-pad) 0;
-      background: var(--bg-dark);
-      position: relative;
-      z-index: 1;
-    }
-    .about::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image: radial-gradient(rgba(255,255,255,.06) 1px, transparent 1px);
-      background-size: 12px 12px;
-      pointer-events: none;
-    }
+       ═══════════════════════════════════════ */
+    .about { padding: var(--sp) 0; background: var(--dark); position: relative; z-index: 1; }
+    .about::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(rgba(255,255,255,.06) 1px, transparent 1px); background-size: 12px 12px; pointer-events: none; }
     .about .kicker { color: rgba(255,255,255,.35); }
-    .about .section-title { color: var(--text-white); max-width: 600px; }
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 72px;
-      align-items: start;
-    }
-
-    .about-text p {
-      font-size: 16px;
-      color: rgba(255,255,255,.5);
-      line-height: 1.75;
-      margin-bottom: 16px;
-    }
-    .about-text .edu {
-      font-size: 13px;
-      color: rgba(255,255,255,.28);
-      margin-bottom: 28px;
-    }
+    .about .section-title { color: var(--tw); max-width: 600px; }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start; }
+    .about-text p { font-size: 16px; color: rgba(255,255,255,.5); line-height: 1.75; margin-bottom: 16px; }
+    .about-text .edu { font-size: 13px; color: rgba(255,255,255,.28); margin-bottom: 28px; }
     .about-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+    .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+    .stat { padding-top: 24px; border-top: 1px solid rgba(255,255,255,.08); }
+    .stat-num { font-family: var(--serif); font-size: 48px; color: var(--tw); line-height: 1; margin-bottom: 6px; }
+    .stat-label { font-size: 12px; color: rgba(255,255,255,.35); text-transform: uppercase; letter-spacing: 1.5px; }
+    .stats-note { grid-column: span 2; font-size: 12px; color: rgba(255,255,255,.2); margin-top: -8px; }
 
-    .stats-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 32px;
-    }
-
-    .stat {
-      padding-top: 24px;
-      border-top: 1px solid rgba(255,255,255,.08);
-    }
-    .stat-num {
-      font-family: var(--serif);
-      font-size: 48px;
-      color: var(--text-white);
-      line-height: 1;
-      margin-bottom: 6px;
-    }
-    .stat-label {
-      font-size: 12px;
-      color: rgba(255,255,255,.35);
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-    }
-
-    .stats-note {
-      grid-column: span 2;
-      font-size: 12px;
-      color: rgba(255,255,255,.2);
-      margin-top: -8px;
-    }
-
-    /* ═══════════════════════════════════════════
-       SELECTED WORK
-       ═══════════════════════════════════════════ */
-    .work { padding: var(--section-pad) 0; position: relative; z-index: 1; }
-
-    .work-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      gap: 24px;
-      margin-bottom: 56px;
-      flex-wrap: wrap;
-    }
+    /* ═══════════════════════════════════════
+       WORK
+       ═══════════════════════════════════════ */
+    .work { padding: var(--sp) 0; position: relative; z-index: 1; }
+    .work-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; margin-bottom: 56px; flex-wrap: wrap; }
     .work-head-text .section-desc { margin-top: 8px; font-size: 15px; }
-
-    .work-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: auto auto;
-      gap: 20px;
-    }
-
-    .project {
-      border-radius: 16px;
-      overflow: hidden;
-      position: relative;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      transition: transform .35s var(--ease), box-shadow .35s var(--ease);
-    }
-    .project:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 20px 50px rgba(0,0,0,.1);
-    }
+    .work-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .project { border-radius: 16px; overflow: hidden; background: var(--card); border: 1px solid var(--border); transition: transform .35s var(--ease), box-shadow .35s var(--ease); }
+    .project:hover { transform: translateY(-4px); box-shadow: 0 20px 50px rgba(0,0,0,.1); }
     .project:first-child { grid-row: span 2; }
-    .project a {
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-      text-decoration: none;
-      color: inherit;
-    }
+    .project a { display: flex; flex-direction: column; height: 100%; text-decoration: none; color: inherit; }
+    .project-visual { flex: 1; min-height: 260px; display: flex; align-items: center; justify-content: center; position: relative; }
+    .project-visual::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,.72) 0%, rgba(0,0,0,.15) 40%, transparent 65%); }
+    .project-meta { position: absolute; bottom: 0; left: 0; right: 0; padding: 28px; z-index: 2; }
+    .project-stage { display: inline-block; font-size: 10px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,.5); margin-bottom: 4px; }
+    .project-domain { font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,.4); margin-bottom: 8px; }
+    .project-meta h3 { font-family: var(--serif); font-size: 22px; color: var(--tw); margin-bottom: 8px; }
+    .project-meta p { font-size: 13px; color: rgba(255,255,255,.55); line-height: 1.6; max-width: 400px; }
+    .project-link { font-size: 12px; font-weight: 600; color: rgba(255,255,255,.6); margin-top: 12px; display: inline-block; }
 
-    .project-visual {
-      flex: 1;
-      min-height: 260px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      filter: grayscale(100%);
-      transition: filter .5s var(--ease);
-    }
-    .project:hover .project-visual { filter: grayscale(60%); }
-    .project-visual::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(0,0,0,.72) 0%, rgba(0,0,0,.15) 40%, transparent 65%);
-    }
-
-    .project-meta {
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      padding: 28px;
-      z-index: 2;
-    }
-    .project-stage {
-      display: inline-block;
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: rgba(255,255,255,.5);
-      margin-bottom: 4px;
-    }
-    .project-domain {
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      color: rgba(255,255,255,.4);
-      margin-bottom: 8px;
-    }
-    .project-meta h3 {
-      font-family: var(--serif);
-      font-size: 22px;
-      color: var(--text-white);
-      margin-bottom: 8px;
-    }
-    .project-meta p {
-      font-size: 13px;
-      color: rgba(255,255,255,.55);
-      line-height: 1.6;
-      max-width: 400px;
-    }
-    .project-link {
-      font-size: 12px;
-      font-weight: 600;
-      color: rgba(255,255,255,.6);
-      margin-top: 12px;
-      display: inline-block;
-    }
-
-    /* ═══════════════════════════════════════════
-       WORKING PRINCIPLES
-       ═══════════════════════════════════════════ */
-    .principles { padding: var(--section-pad) 0; position: relative; z-index: 1; }
-
-    .principles-head {
-      text-align: center;
-      margin-bottom: 56px;
-    }
+    /* ═══════════════════════════════════════
+       PRINCIPLES
+       ═══════════════════════════════════════ */
+    .principles { padding: var(--sp) 0; position: relative; z-index: 1; }
+    .principles-head { text-align: center; margin-bottom: 56px; }
     .principles-head .section-desc { margin: 0 auto; }
+    .principles-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .principle { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px 28px; transition: transform .35s var(--ease), box-shadow .35s var(--ease); }
+    .principle:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,.06); }
+    .principle-num { font-family: var(--serif); font-size: 36px; color: var(--t1); opacity: .12; margin-bottom: 16px; }
+    .principle h3 { font-family: var(--serif); font-size: 20px; margin-bottom: 12px; }
+    .principle p { font-size: 14px; color: var(--t2); line-height: 1.75; }
 
-    .principles-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-
-    .principle {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 40px 28px;
-      transition: transform .35s var(--ease), box-shadow .35s var(--ease);
-    }
-    .principle:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 40px rgba(0,0,0,.06);
-    }
-
-    .principle-num {
-      font-family: var(--serif);
-      font-size: 36px;
-      color: var(--text-primary);
-      opacity: .12;
-      margin-bottom: 16px;
-    }
-    .principle h3 {
-      font-family: var(--serif);
-      font-size: 20px;
-      margin-bottom: 12px;
-    }
-    .principle p {
-      font-size: 14px;
-      color: var(--text-secondary);
-      line-height: 1.75;
-    }
-
-    /* ═══════════════════════════════════════════
-       CTA
-       ═══════════════════════════════════════════ */
+    /* ═══════════════════════════════════════
+       CTA & FOOTER
+       ═══════════════════════════════════════ */
     .cta { padding: 80px 0 100px; position: relative; z-index: 1; }
-
-    .cta-box {
-      background: var(--bg-dark);
-      border-radius: 24px;
-      padding: 80px 60px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .cta-box::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image: radial-gradient(rgba(255,255,255,.04) 1px, transparent 1px);
-      background-size: 14px 14px;
-      pointer-events: none;
-    }
+    .cta-box { background: var(--dark); border-radius: 24px; padding: 80px 60px; text-align: center; position: relative; overflow: hidden; }
+    .cta-box::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(rgba(255,255,255,.04) 1px, transparent 1px); background-size: 14px 14px; pointer-events: none; }
     .cta-box .kicker { color: rgba(255,255,255,.35); }
-    .cta-box .section-title { color: var(--text-white); max-width: 560px; margin: 0 auto 16px; }
+    .cta-box .section-title { color: var(--tw); max-width: 560px; margin: 0 auto 16px; }
     .cta-box .section-desc { color: rgba(255,255,255,.45); margin: 0 auto 36px; text-align: center; }
-
     .cta-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .cta-email { display: inline-block; margin-top: 20px; font-size: 13px; color: rgba(255,255,255,.35); text-decoration: none; border-bottom: 1px solid rgba(255,255,255,.12); }
+    .cta-location { font-size: 13px; color: rgba(255,255,255,.2); margin-top: 20px; }
 
-    .cta-email {
-      display: inline-block;
-      margin-top: 20px;
-      font-size: 13px;
-      color: rgba(255,255,255,.35);
-      text-decoration: none;
-      border-bottom: 1px solid rgba(255,255,255,.12);
-      transition: color .3s var(--ease);
-    }
-    .cta-email:hover { color: rgba(255,255,255,.6); }
-
-    .cta-location {
-      font-size: 13px;
-      color: rgba(255,255,255,.2);
-      margin-top: 20px;
-    }
-
-    /* ═══════════════════════════════════════════
-       FOOTER
-       ═══════════════════════════════════════════ */
-    .footer {
-      padding: 72px 0 36px;
-      border-top: 1px solid var(--border);
-      position: relative;
-      z-index: 1;
-    }
-
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 48px;
-      margin-bottom: 48px;
-    }
-
-    .footer-brand p {
-      font-size: 14px;
-      color: var(--text-secondary);
-      line-height: 1.7;
-      margin-top: 14px;
-      max-width: 260px;
-    }
-
-    .footer-col h4 {
-      font-size: 12px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      color: var(--text-primary);
-      margin-bottom: 18px;
-    }
+    .footer { padding: 72px 0 36px; border-top: 1px solid var(--border); position: relative; z-index: 1; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+    .footer-brand p { font-size: 14px; color: var(--t2); line-height: 1.7; margin-top: 14px; max-width: 260px; }
+    .footer-col h4 { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; color: var(--t1); margin-bottom: 18px; }
     .footer-col ul { list-style: none; }
     .footer-col li { margin-bottom: 10px; }
-    .footer-col a {
-      font-size: 14px;
-      color: var(--text-secondary);
-      text-decoration: none;
-      transition: color .2s;
-    }
-    .footer-col a:hover { color: var(--text-primary); }
+    .footer-col a { font-size: 14px; color: var(--t2); text-decoration: none; transition: color .2s; }
+    .footer-col a:hover { color: var(--t1); }
+    .social-row { display: flex; gap: 10px; margin-top: 4px; }
+    .soc { width: 38px; height: 38px; border-radius: 50%; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; text-decoration: none; transition: all .3s var(--ease); }
+    .soc:hover { background: var(--accent); border-color: var(--accent); }
+    .soc:hover svg { stroke: #fff; }
+    .soc svg { width: 16px; height: 16px; stroke: var(--t2); fill: none; stroke-width: 2; }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 28px; border-top: 1px solid var(--border); flex-wrap: wrap; gap: 12px; }
+    .footer-bottom p { font-size: 13px; color: var(--t3); }
+    .footer-bottom a { color: var(--t3); text-decoration: none; border-bottom: 1px solid var(--border); }
 
-    .social-row {
-      display: flex;
-      gap: 10px;
-      margin-top: 4px;
-    }
-    .social-icon {
-      width: 38px; height: 38px;
-      border-radius: 50%;
-      border: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-decoration: none;
-      transition: all .3s var(--ease);
-    }
-    .social-icon:hover {
-      background: var(--accent);
-      border-color: var(--accent);
-    }
-    .social-icon:hover svg { stroke: #fff; fill: none; }
-    .social-icon svg { width: 16px; height: 16px; stroke: var(--text-secondary); fill: none; stroke-width: 2; }
-
-    .footer-bottom {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-top: 28px;
-      border-top: 1px solid var(--border);
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-    .footer-bottom p {
-      font-size: 13px;
-      color: var(--text-light);
-    }
-    .footer-bottom a {
-      color: var(--text-light);
-      text-decoration: none;
-      border-bottom: 1px solid var(--border);
-      transition: color .2s;
-    }
-    .footer-bottom a:hover { color: var(--text-primary); }
-
-    /* ═══════════════════════════════════════════
-       SCROLL REVEAL
-       ═══════════════════════════════════════════ */
-    .reveal {
-      opacity: 0;
-      transform: translateY(36px);
-      transition: opacity .8s var(--ease), transform .8s var(--ease);
-    }
+    /* Scroll reveal */
+    .reveal { opacity: 0; transform: translateY(36px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
     .reveal.visible { opacity: 1; transform: none; }
-    .reveal-d1 { transition-delay: .1s; }
-    .reveal-d2 { transition-delay: .2s; }
-    .reveal-d3 { transition-delay: .3s; }
-    .reveal-d4 { transition-delay: .35s; }
+    .rd1 { transition-delay: .1s; } .rd2 { transition-delay: .2s; } .rd3 { transition-delay: .3s; }
 
     @media (prefers-reduced-motion: reduce) {
+      #intro-stage { display: none !important; }
+      #site-wrap { opacity: 1 !important; }
       .reveal { opacity: 1; transform: none; transition: none; }
-      html { scroll-behavior: auto; }
     }
 
-    /* ═══════════════════════════════════════════
-       RESPONSIVE
-       ═══════════════════════════════════════════ */
+    /* Responsive */
     @media (max-width: 1024px) {
-      .card-grid { grid-template-columns: repeat(2, 1fr); }
-      .principles-grid { grid-template-columns: repeat(2, 1fr); }
+      .card-grid, .principles-grid { grid-template-columns: repeat(2, 1fr); }
       .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
     }
-
     @media (max-width: 768px) {
-      :root { --section-pad: 80px; }
+      :root { --sp: 80px; }
       .container { padding: 0 20px; }
       .nav-links, .nav-login { display: none; }
       .hamburger { display: block; }
-
-      .hero { padding: 90px 20px 0; }
-      .hero h1 { font-size: clamp(36px, 10vw, 50px); }
-
+      .hero { padding: 110px 20px 30px; }
+      .hero h1 { font-size: clamp(40px, 11vw, 56px); }
       .services-head { grid-template-columns: 1fr; gap: 16px; }
-      .card-grid { grid-template-columns: 1fr; }
-
-      .about-grid { grid-template-columns: 1fr; gap: 40px; }
-      .stats-note { grid-column: span 1; }
-
-      .work-grid { grid-template-columns: 1fr; }
+      .card-grid, .about-grid, .work-grid, .principles-grid { grid-template-columns: 1fr; }
       .project:first-child { grid-row: span 1; }
       .project-visual { min-height: 220px; }
-
-      .principles-grid { grid-template-columns: 1fr; }
-
+      .stats-note { grid-column: span 1; }
       .cta-box { padding: 48px 24px; border-radius: 16px; }
       .cta-actions { flex-direction: column; align-items: center; }
-
       .footer-grid { grid-template-columns: 1fr; gap: 28px; }
       .footer-bottom { flex-direction: column; text-align: center; }
+      .intro-hands-viewport { height: 50vh; }
+      .intro-hand-robot, .intro-hand-human { height: clamp(180px, 35vh, 260px); }
     }
   </style>
 </head>
 
 <body>
+
+  <!-- ════════════════════════════════════════
+       CINEMATIC OPENING INTRO:
+       Robot hand comes from left, Human hand from right.
+       When index fingers touch → spark ignites → site opens!
+       ════════════════════════════════════════ -->
+  <div id="intro-stage" aria-hidden="true">
+    <div class="intro-header-hint">
+      <div class="logo">4TECH</div>
+      <p>Engineering · Robotics · RF · Embedded Systems</p>
+    </div>
+
+    <div class="intro-hands-viewport" id="intro-viewport">
+      <!-- Authentic Robot Hand from the picture -->
+      <img id="intro-robot-hand" class="intro-hand-robot" src="assets/robot-hand-2x.png" alt="Robot Hand">
+      <!-- Authentic Human Hand from the picture -->
+      <img id="intro-human-hand" class="intro-hand-human" src="assets/human-hand-2x.png" alt="Human Hand">
+      <!-- Touch burst effects -->
+      <div class="touch-spark" id="touch-spark"></div>
+      <div class="touch-ripple" id="touch-ripple"></div>
+    </div>
+
+    <div class="intro-tagline">
+      Touch of Innovation
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════
+       MAIN WEBSITE
+       ════════════════════════════════════════ -->
+  <div id="site-wrap">
   <a href="#main" class="skip-link">Skip to content</a>
 
-  <!-- ════════════ NAVIGATION ════════════ -->
+  <!-- NAVBAR -->
   <header class="nav" id="nav">
     <div class="container">
       <div class="nav-left">
@@ -923,7 +618,7 @@
       </div>
       <div class="nav-right">
         <a href="https://4tech-9cy.pages.dev/account" class="nav-login">Login</a>
-        <a href="#contact" class="nav-cta">Start a Project ↗</a>
+        <a href="#contact" class="nav-cta">Get In Touch ↗</a>
         <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
           <span></span><span></span><span></span>
         </button>
@@ -942,87 +637,47 @@
 
   <main id="main">
 
-  <!-- ════════════ HERO ════════════ -->
+  <!-- ════════════════════════════════════════
+       HERO — REDESIGNED EXACTLY LIKE PHOTO
+       ════════════════════════════════════════ -->
   <section class="hero" id="hero">
-    <div class="atmos atmos-1" aria-hidden="true"></div>
-    <div class="atmos atmos-2" aria-hidden="true"></div>
-
     <div class="hero-content">
-      <p class="kicker" style="margin-bottom:24px">Independent Engineering · Kalpakkam, India</p>
-      <h1>Technology That<br>Shapes Tomorrow.</h1>
+      <p class="kicker">Independent Engineering · Kalpakkam, India</p>
+      <h1>Bold Ideas That<br>Start With Vision.</h1>
       <p class="hero-sub">We turn engineering ideas into purposeful prototypes—connecting embedded systems, robotics, and RF research with practical, hands-on development.</p>
       <div class="hero-actions">
-        <a href="#work" class="btn btn-primary arrow">Explore Our Work</a>
-        <a href="#contact" class="btn btn-ghost">Start a conversation</a>
+        <a href="#contact" class="btn btn-p arrow">Get In Touch</a>
       </div>
     </div>
 
-    <div class="hero-hands" aria-hidden="true">
-      <svg viewBox="0 0 1440 520" preserveAspectRatio="xMidYMax meet" style="position:absolute;bottom:0;width:100%;height:100%" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <pattern id="hd" width="4" height="4" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r=".8" fill="#333"/></pattern>
-          <pattern id="hl" width="5" height="5" patternUnits="userSpaceOnUse"><circle cx="2.5" cy="2.5" r=".6" fill="#555"/></pattern>
-        </defs>
-        <!-- Robotic hand (left) -->
-        <g opacity=".85">
-          <path d="M-60,520 C-10,450 60,400 130,360 C200,320 250,285 310,260 C370,235 410,215 460,195 C500,180 535,168 570,158 C600,150 625,143 655,138 L695,133" fill="none" stroke="url(#hd)" stroke-width="85" stroke-linecap="round"/>
-          <path d="M0,520 C30,445 100,385 180,340 C260,295 310,265 370,245 C420,228 460,212 510,197 C550,185 585,174 620,165 C645,158 670,152 700,147 L710,520Z" fill="url(#hd)" opacity=".28"/>
-          <!-- Joints -->
-          <circle cx="310" cy="260" r="14" fill="none" stroke="#1a1a1a" stroke-width="1.8" opacity=".35"/><circle cx="310" cy="260" r="5.5" fill="#1a1a1a" opacity=".18"/>
-          <circle cx="460" cy="195" r="11" fill="none" stroke="#1a1a1a" stroke-width="1.8" opacity=".35"/><circle cx="460" cy="195" r="4" fill="#1a1a1a" opacity=".18"/>
-          <circle cx="570" cy="158" r="9" fill="none" stroke="#1a1a1a" stroke-width="1.8" opacity=".35"/><circle cx="570" cy="158" r="3" fill="#1a1a1a" opacity=".18"/>
-          <circle cx="655" cy="138" r="7" fill="none" stroke="#1a1a1a" stroke-width="1.5" opacity=".3"/><circle cx="655" cy="138" r="2.5" fill="#1a1a1a" opacity=".15"/>
-          <!-- Knuckle plates -->
-          <rect x="637" y="128" width="22" height="8" rx="2" fill="none" stroke="#1a1a1a" stroke-width="1" opacity=".2" transform="rotate(-8 648 132)"/>
-          <rect x="550" y="148" width="18" height="7" rx="2" fill="none" stroke="#1a1a1a" stroke-width="1" opacity=".18" transform="rotate(-12 559 151)"/>
-          <!-- Fingers -->
-          <path d="M660,133 C678,128 696,124 712,121" fill="none" stroke="#1a1a1a" stroke-width="3.5" opacity=".5" stroke-linecap="round"/>
-          <path d="M650,148 C670,140 690,132 708,126" fill="none" stroke="#1a1a1a" stroke-width="2.8" opacity=".4" stroke-linecap="round"/>
-          <path d="M643,162 C663,154 683,145 700,137" fill="none" stroke="#1a1a1a" stroke-width="2.2" opacity=".33" stroke-linecap="round"/>
-          <path d="M635,175 C652,168 669,160 684,153" fill="none" stroke="#1a1a1a" stroke-width="1.8" opacity=".25" stroke-linecap="round"/>
-          <!-- Wires -->
-          <line x1="340" y1="248" x2="430" y2="205" stroke="#1a1a1a" stroke-width=".6" opacity=".15"/>
-          <line x1="390" y1="232" x2="490" y2="188" stroke="#1a1a1a" stroke-width=".5" opacity=".12"/>
-          <line x1="510" y1="175" x2="600" y2="152" stroke="#1a1a1a" stroke-width=".5" opacity=".1"/>
-          <!-- Panel lines -->
-          <path d="M180,380 C220,350 270,320 330,295" fill="none" stroke="#1a1a1a" stroke-width=".8" opacity=".12"/>
-          <path d="M250,340 C290,315 340,290 400,268" fill="none" stroke="#1a1a1a" stroke-width=".6" opacity=".1"/>
-        </g>
-        <!-- Human hand (right) -->
-        <g opacity=".72">
-          <path d="M1500,520 C1450,445 1380,390 1310,355 C1240,320 1190,292 1130,268 C1070,244 1030,225 970,210 C930,200 895,190 860,182 C830,176 800,170 770,165 L740,162" fill="none" stroke="url(#hl)" stroke-width="78" stroke-linecap="round"/>
-          <path d="M1500,520 C1445,440 1370,375 1290,340 C1210,305 1155,278 1090,255 C1025,232 975,216 915,202 C860,189 825,180 780,170 C755,165 738,162 730,162 L735,520Z" fill="url(#hl)" opacity=".22"/>
-          <!-- Contours -->
-          <path d="M1350,370 C1290,340 1230,305 1160,278 C1090,251 1040,232 970,218 C910,206 870,195 820,184 L745,168" fill="none" stroke="#1a1a1a" stroke-width=".9" opacity=".12"/>
-          <path d="M1300,395 C1250,365 1190,335 1125,310 C1060,285 1010,265 945,248 C890,234 850,223 800,212 L745,200" fill="none" stroke="#1a1a1a" stroke-width=".6" opacity=".08"/>
-          <!-- Fingers -->
-          <path d="M775,163 C758,160 742,158 728,158" fill="none" stroke="#1a1a1a" stroke-width="2.8" opacity=".38" stroke-linecap="round"/>
-          <path d="M790,176 C770,170 750,165 732,163" fill="none" stroke="#1a1a1a" stroke-width="2.2" opacity=".3" stroke-linecap="round"/>
-          <path d="M800,190 C782,184 764,178 748,174" fill="none" stroke="#1a1a1a" stroke-width="1.8" opacity=".25" stroke-linecap="round"/>
-          <path d="M808,204 C792,199 776,194 762,190" fill="none" stroke="#1a1a1a" stroke-width="1.4" opacity=".2" stroke-linecap="round"/>
-        </g>
-      </svg>
+    <!-- The Authentic Hands Illustration from the photo -->
+    <div class="hero-hands-wrap" id="hero-hands-trigger" title="Click to replay the touch animation">
+      <img src="assets/hands-hero-2x.png" alt="Robotic hand reaching to touch human hand — Michelangelo Creation of Adam composition" class="hero-hands-img">
     </div>
+
+    <button class="replay-badge" onclick="playTouchAnimation()" title="Replay intro animation">
+      <span>↺</span> Replay Touch Animation
+    </button>
   </section>
 
-  <!-- ════════════ CAPABILITIES ════════════ -->
+  <!-- CAPABILITIES / TRUST BAR (Exact styling from photo) -->
   <section class="capabilities">
     <div class="container">
-      <p class="cap-label">Engineering across disciplines.</p>
+      <p class="cap-label">Trusted disciplines across engineering &amp; research</p>
       <div class="cap-row">
         <span class="cap-item">Embedded Systems</span>
-        <span class="cap-item">Robotics</span>
-        <span class="cap-item">RF Systems</span>
+        <span class="cap-item">Robotics &amp; Motion</span>
+        <span class="cap-item">RF Engineering</span>
         <span class="cap-item">Automation</span>
         <span class="cap-item">Electronics</span>
-        <span class="cap-item">IoT</span>
+        <span class="cap-item">IoT Systems</span>
         <span class="cap-item">Simulation</span>
-        <span class="cap-item">Prototyping</span>
+        <span class="cap-item">Rapid Prototyping</span>
       </div>
     </div>
   </section>
 
-  <!-- ════════════ SERVICES ════════════ -->
+  <!-- SERVICES -->
   <section class="services" id="services">
     <div class="container">
       <div class="services-head reveal">
@@ -1032,34 +687,33 @@
         </div>
         <p class="section-desc">From a first technical question to a structured prototype, 4TECH brings hardware, software, and mechanical thinking into one development process. Every engagement starts with a clear scope and a realistic next step.</p>
       </div>
-
       <div class="card-grid">
-        <div class="card reveal reveal-d1">
+        <div class="card reveal rd1">
           <div class="card-icon"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><circle cx="12" cy="12" r="3"/><path d="M12 4v3M12 17v3M4 12h3M17 12h3"/></svg></div>
           <h3>Embedded Systems</h3>
           <p>Connect sensors, controllers, and interfaces through practical firmware and hardware integration.</p>
         </div>
-        <div class="card reveal reveal-d2">
+        <div class="card reveal rd2">
           <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M12 2L4 7v10l8 5 8-5V7z"/><circle cx="12" cy="12" r="3"/></svg></div>
           <h3>Robotics &amp; Motion</h3>
           <p>Explore mechanisms, kinematics, and control strategies with mechanical design and computational studies.</p>
         </div>
-        <div class="card reveal reveal-d3">
+        <div class="card reveal rd3">
           <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M2 12h4l3-9 6 18 3-9h4"/></svg></div>
           <h3>RF &amp; Instrumentation</h3>
           <p>Develop experimental approaches to antenna measurement, signal acquisition, and repeatable technical observation.</p>
         </div>
-        <div class="card reveal reveal-d1">
+        <div class="card reveal rd1">
           <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M5 12.5a7 7 0 0114 0"/><path d="M8.5 10.5a4 4 0 018 0"/><circle cx="12" cy="12" r="1.5"/><path d="M12 14v6"/></svg></div>
           <h3>IoT &amp; Automation</h3>
           <p>Bring device state, environmental observations, and control workflows into clear, usable interfaces.</p>
         </div>
-        <div class="card reveal reveal-d2">
+        <div class="card reveal rd2">
           <div class="card-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 3v18"/></svg></div>
           <h3>Prototype Development</h3>
           <p>Translate a project brief into components, design decisions, milestones, and reviewable engineering work.</p>
         </div>
-        <div class="card reveal reveal-d3">
+        <div class="card reveal rd3">
           <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/><path d="M8 7h8M8 11h5"/></svg></div>
           <h3>Practical Learning</h3>
           <p>Build understanding through guided work with microcontrollers, simulation, electronics, and system integration.</p>
@@ -1068,7 +722,7 @@
     </div>
   </section>
 
-  <!-- ════════════ ABOUT ════════════ -->
+  <!-- ABOUT -->
   <section class="about" id="about">
     <div class="container">
       <div class="about-grid">
@@ -1076,14 +730,14 @@
           <p class="kicker">Why 4TECH</p>
           <h2 class="section-title">Engineer by study.<br>Builder by instinct.</h2>
           <p>I'm Mohammed Vashir, a B.Tech Electrical and Electronics Engineering student at B.S. Abdur Rahman Crescent Institute of Science and Technology. My work spans embedded systems, robotic mechanisms, and computational research.</p>
-          <p>Based in Kalpakkam, I'm developing 4TECH around a simple principle: make the engineering understandable, keep the progress visible, and let the work speak honestly. I work across design, code, and hardware to investigate how an idea can become a practical system.</p>
+          <p>Based in Kalpakkam, I'm developing 4TECH around a simple principle: make the engineering understandable, keep the progress visible, and let the work speak honestly.</p>
           <p class="edu">Second-year undergraduate · Vandalur, Tamil Nadu</p>
           <div class="about-btns">
-            <a href="https://4tech-9cy.pages.dev/portfolio" class="btn btn-outline-w arrow" style="padding:12px 28px">Explore Portfolio</a>
-            <a href="https://4tech-9cy.pages.dev/resume" class="btn btn-outline-w" style="padding:12px 28px; border-color:rgba(255,255,255,.12); color:rgba(255,255,255,.5)">View Résumé</a>
+            <a href="https://4tech-9cy.pages.dev/portfolio" class="btn btn-ow arrow" style="padding:12px 28px">Explore Portfolio</a>
+            <a href="https://4tech-9cy.pages.dev/resume" class="btn btn-ow" style="padding:12px 28px;border-color:rgba(255,255,255,.12);color:rgba(255,255,255,.5)">View Résumé</a>
           </div>
         </div>
-        <div class="reveal reveal-d2">
+        <div class="reveal rd2">
           <div class="stats-grid">
             <div class="stat"><div class="stat-num" data-target="4">0</div><div class="stat-label">Engineering Workstreams</div></div>
             <div class="stat"><div class="stat-num" data-target="3">0</div><div class="stat-label">Core Skill Disciplines</div></div>
@@ -1096,7 +750,7 @@
     </div>
   </section>
 
-  <!-- ════════════ SELECTED WORK ════════════ -->
+  <!-- SELECTED WORK -->
   <section class="work" id="work">
     <div class="container">
       <div class="work-head reveal">
@@ -1105,113 +759,38 @@
           <h2 class="section-title">Questions worth building for.</h2>
           <p class="section-desc">A selection of prototypes, design work, and computational studies—each with its current development stage.</p>
         </div>
-        <a href="https://4tech-9cy.pages.dev/projects" class="btn btn-ghost arrow">View All Projects</a>
+        <a href="https://4tech-9cy.pages.dev/projects" class="btn btn-g arrow">View All Projects</a>
       </div>
-
       <div class="work-grid">
-        <!-- 1: Antenna -->
-        <article class="project reveal">
-          <a href="https://4tech-9cy.pages.dev/projects/antenna">
-            <div class="project-visual" style="background:linear-gradient(135deg,#1a1a1a,#111)">
-              <svg viewBox="0 0 240 240" width="140" height="140" style="position:relative;z-index:2" aria-hidden="true">
-                <circle cx="120" cy="120" r="80" fill="none" stroke="rgba(255,255,255,.1)" stroke-width=".8"/>
-                <circle cx="120" cy="120" r="55" fill="none" stroke="rgba(255,255,255,.15)" stroke-width=".8"/>
-                <circle cx="120" cy="120" r="30" fill="none" stroke="rgba(255,255,255,.2)" stroke-width=".8"/>
-                <line x1="120" y1="40" x2="120" y2="200" stroke="rgba(255,255,255,.07)" stroke-width=".5"/>
-                <line x1="40" y1="120" x2="200" y2="120" stroke="rgba(255,255,255,.07)" stroke-width=".5"/>
-                <line x1="60" y1="60" x2="180" y2="180" stroke="rgba(255,255,255,.05)" stroke-width=".5"/>
-                <line x1="180" y1="60" x2="60" y2="180" stroke="rgba(255,255,255,.05)" stroke-width=".5"/>
-                <path d="M120,120 L145,55" stroke="rgba(255,255,255,.4)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-                <path d="M120,120 L170,75" stroke="rgba(255,255,255,.3)" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-                <path d="M120,120 L160,105" stroke="rgba(255,255,255,.2)" stroke-width="1.2" fill="none" stroke-linecap="round"/>
-                <circle cx="120" cy="120" r="4" fill="rgba(255,255,255,.35)"/>
-                <rect x="116" y="200" width="8" height="24" rx="2" fill="none" stroke="rgba(255,255,255,.2)" stroke-width="1"/>
-              </svg>
-            </div>
-            <div class="project-meta">
-              <div class="project-stage">Research Level · Prototype Development</div>
-              <div class="project-domain">RF Systems / Automation</div>
-              <h3>Antenna Radiation Pattern Measurement</h3>
-              <p>Coordinating angular motion and RF acquisition to investigate directional antenna response.</p>
-              <span class="project-link arrow">View Project</span>
-            </div>
-          </a>
-        </article>
-
-        <!-- 2: Robotic Arm -->
-        <article class="project reveal reveal-d1">
-          <a href="https://4tech-9cy.pages.dev/projects/robot-arm">
-            <div class="project-visual" style="background:linear-gradient(135deg,#2a2a2a,#181818)">
-              <svg viewBox="0 0 200 200" width="90" height="90" style="position:relative;z-index:2" aria-hidden="true">
-                <line x1="55" y1="165" x2="88" y2="100" stroke="rgba(255,255,255,.3)" stroke-width="3.5" stroke-linecap="round"/>
-                <line x1="88" y1="100" x2="132" y2="58" stroke="rgba(255,255,255,.25)" stroke-width="2.8" stroke-linecap="round"/>
-                <line x1="132" y1="58" x2="155" y2="45" stroke="rgba(255,255,255,.2)" stroke-width="2" stroke-linecap="round"/>
-                <circle cx="55" cy="165" r="6" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="1.5"/>
-                <circle cx="88" cy="100" r="5" fill="none" stroke="rgba(255,255,255,.2)" stroke-width="1.5"/>
-                <circle cx="132" cy="58" r="4" fill="none" stroke="rgba(255,255,255,.18)" stroke-width="1.5"/>
-                <circle cx="155" cy="45" r="3" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="1"/>
-                <path d="M88,100 Q110,70 132,58" fill="none" stroke="rgba(255,255,255,.08)" stroke-width=".6" stroke-dasharray="3 3"/>
-              </svg>
-            </div>
-            <div class="project-meta">
-              <div class="project-stage">Advanced · CAD & Computational Studies</div>
-              <div class="project-domain">Robotics / Mechanical / Computation</div>
-              <h3>Advanced Robotic Arm Systems</h3>
-              <p>A five-axis mechanical design alongside analytical and neural approaches to inverse kinematics.</p>
-              <span class="project-link arrow">View Project</span>
-            </div>
-          </a>
-        </article>
-
-        <!-- 3: Drone -->
-        <article class="project reveal reveal-d2">
-          <a href="https://4tech-9cy.pages.dev/projects/drone">
-            <div class="project-visual" style="background:linear-gradient(135deg,#333,#1e1e1e)">
-              <svg viewBox="0 0 200 200" width="90" height="90" style="position:relative;z-index:2" aria-hidden="true">
-                <rect x="72" y="72" width="56" height="56" rx="4" fill="none" stroke="rgba(255,255,255,.18)" stroke-width="1.5"/>
-                <line x1="72" y1="100" x2="32" y2="100" stroke="rgba(255,255,255,.12)" stroke-width="1.2"/><circle cx="32" cy="100" r="14" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="1"/>
-                <line x1="128" y1="100" x2="168" y2="100" stroke="rgba(255,255,255,.12)" stroke-width="1.2"/><circle cx="168" cy="100" r="14" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="1"/>
-                <line x1="100" y1="72" x2="100" y2="32" stroke="rgba(255,255,255,.12)" stroke-width="1.2"/><circle cx="100" cy="32" r="14" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="1"/>
-                <line x1="100" y1="128" x2="100" y2="168" stroke="rgba(255,255,255,.12)" stroke-width="1.2"/><circle cx="100" cy="168" r="14" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="1"/>
-                <circle cx="100" cy="100" r="3" fill="rgba(255,255,255,.2)"/>
-              </svg>
-            </div>
-            <div class="project-meta">
-              <div class="project-stage">Advanced · Engineering Development</div>
-              <div class="project-domain">PCB Design / Embedded Systems</div>
-              <h3>ESP32 Drone Platform</h3>
-              <p>A compact ESP32-S3 flight-controller design exploring sensing, power distribution, and brushed-motor control.</p>
-              <span class="project-link arrow">View Project</span>
-            </div>
-          </a>
-        </article>
-
-        <!-- 4: SewerSense -->
-        <article class="project reveal reveal-d3" style="grid-column:2">
-          <a href="https://4tech-9cy.pages.dev/projects/sewersense">
-            <div class="project-visual" style="background:linear-gradient(135deg,#3a3a3a,#222)">
-              <svg viewBox="0 0 200 200" width="90" height="90" style="position:relative;z-index:2" aria-hidden="true">
-                <rect x="40" y="60" width="120" height="80" rx="6" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="1.2"/>
-                <line x1="40" y1="80" x2="160" y2="80" stroke="rgba(255,255,255,.1)" stroke-width=".8"/>
-                <path d="M55,95 L70,110 L85,100 L100,115 L115,95 L130,108 L145,98" fill="none" stroke="rgba(255,255,255,.28)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                <circle cx="60" cy="70" r="3" fill="rgba(255,255,255,.2)"/><circle cx="75" cy="70" r="3" fill="rgba(255,255,255,.15)"/><circle cx="90" cy="70" r="3" fill="rgba(255,255,255,.12)"/>
-                <path d="M100,155 L100,140" stroke="rgba(255,255,255,.1)" stroke-width="1"/><circle cx="100" cy="160" r="5" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="1"/>
-              </svg>
-            </div>
-            <div class="project-meta">
-              <div class="project-stage">Intermediate · Hardware Integration</div>
-              <div class="project-domain">IoT / Environmental Sensing</div>
-              <h3>SewerSense</h3>
-              <p>An ESP32 sensing project that brings environmental observations and device state into a unified interface.</p>
-              <span class="project-link arrow">View Project</span>
-            </div>
-          </a>
-        </article>
+        <article class="project reveal"><a href="https://4tech-9cy.pages.dev/projects/antenna">
+          <div class="project-visual" style="background:linear-gradient(135deg,#1a1a1a,#111)">
+            <svg viewBox="0 0 240 240" width="140" height="140" style="position:relative;z-index:2" aria-hidden="true"><circle cx="120" cy="120" r="80" fill="none" stroke="rgba(255,255,255,.1)" stroke-width=".8"/><circle cx="120" cy="120" r="55" fill="none" stroke="rgba(255,255,255,.15)" stroke-width=".8"/><circle cx="120" cy="120" r="30" fill="none" stroke="rgba(255,255,255,.2)" stroke-width=".8"/><line x1="120" y1="40" x2="120" y2="200" stroke="rgba(255,255,255,.07)" stroke-width=".5"/><line x1="40" y1="120" x2="200" y2="120" stroke="rgba(255,255,255,.07)" stroke-width=".5"/><path d="M120,120 L145,55" stroke="rgba(255,255,255,.4)" stroke-width="2.5" fill="none" stroke-linecap="round"/><path d="M120,120 L170,75" stroke="rgba(255,255,255,.3)" stroke-width="1.8" fill="none" stroke-linecap="round"/><circle cx="120" cy="120" r="4" fill="rgba(255,255,255,.35)"/><rect x="116" y="200" width="8" height="24" rx="2" fill="none" stroke="rgba(255,255,255,.2)" stroke-width="1"/></svg>
+          </div>
+          <div class="project-meta"><div class="project-stage">Research Level · Prototype Development</div><div class="project-domain">RF Systems / Automation</div><h3>Antenna Radiation Pattern Measurement</h3><p>Coordinating angular motion and RF acquisition to investigate directional antenna response.</p><span class="project-link arrow">View Project</span></div>
+        </a></article>
+        <article class="project reveal rd1"><a href="https://4tech-9cy.pages.dev/projects/robot-arm">
+          <div class="project-visual" style="background:linear-gradient(135deg,#2a2a2a,#181818)">
+            <svg viewBox="0 0 200 200" width="90" height="90" style="position:relative;z-index:2" aria-hidden="true"><line x1="55" y1="165" x2="88" y2="100" stroke="rgba(255,255,255,.3)" stroke-width="3.5" stroke-linecap="round"/><line x1="88" y1="100" x2="132" y2="58" stroke="rgba(255,255,255,.25)" stroke-width="2.8" stroke-linecap="round"/><line x1="132" y1="58" x2="155" y2="45" stroke="rgba(255,255,255,.2)" stroke-width="2" stroke-linecap="round"/><circle cx="55" cy="165" r="6" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="1.5"/><circle cx="88" cy="100" r="5" fill="none" stroke="rgba(255,255,255,.2)" stroke-width="1.5"/><circle cx="132" cy="58" r="4" fill="none" stroke="rgba(255,255,255,.18)" stroke-width="1.5"/></svg>
+          </div>
+          <div class="project-meta"><div class="project-stage">Advanced · CAD & Computational Studies</div><div class="project-domain">Robotics / Mechanical</div><h3>Advanced Robotic Arm Systems</h3><p>A five-axis mechanical design alongside analytical and neural approaches to inverse kinematics.</p><span class="project-link arrow">View Project</span></div>
+        </a></article>
+        <article class="project reveal rd2"><a href="https://4tech-9cy.pages.dev/projects/drone">
+          <div class="project-visual" style="background:linear-gradient(135deg,#333,#1e1e1e)">
+            <svg viewBox="0 0 200 200" width="90" height="90" style="position:relative;z-index:2" aria-hidden="true"><rect x="72" y="72" width="56" height="56" rx="4" fill="none" stroke="rgba(255,255,255,.18)" stroke-width="1.5"/><line x1="72" y1="100" x2="32" y2="100" stroke="rgba(255,255,255,.12)" stroke-width="1.2"/><circle cx="32" cy="100" r="14" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="1"/><line x1="128" y1="100" x2="168" y2="100" stroke="rgba(255,255,255,.12)" stroke-width="1.2"/><circle cx="168" cy="100" r="14" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="1"/><line x1="100" y1="72" x2="100" y2="32" stroke="rgba(255,255,255,.12)" stroke-width="1.2"/><circle cx="100" cy="32" r="14" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="1"/><line x1="100" y1="128" x2="100" y2="168" stroke="rgba(255,255,255,.12)" stroke-width="1.2"/><circle cx="100" cy="168" r="14" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="1"/><circle cx="100" cy="100" r="3" fill="rgba(255,255,255,.2)"/></svg>
+          </div>
+          <div class="project-meta"><div class="project-stage">Advanced · Engineering Development</div><div class="project-domain">PCB / Embedded Systems</div><h3>ESP32 Drone Platform</h3><p>A compact ESP32-S3 flight-controller design exploring sensing, power distribution, and brushed-motor control.</p><span class="project-link arrow">View Project</span></div>
+        </a></article>
+        <article class="project reveal rd3"><a href="https://4tech-9cy.pages.dev/projects/sewersense">
+          <div class="project-visual" style="background:linear-gradient(135deg,#3a3a3a,#222)">
+            <svg viewBox="0 0 200 200" width="90" height="90" style="position:relative;z-index:2" aria-hidden="true"><rect x="40" y="60" width="120" height="80" rx="6" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="1.2"/><line x1="40" y1="80" x2="160" y2="80" stroke="rgba(255,255,255,.1)" stroke-width=".8"/><path d="M55,95 L70,110 L85,100 L100,115 L115,95 L130,108 L145,98" fill="none" stroke="rgba(255,255,255,.28)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="60" cy="70" r="3" fill="rgba(255,255,255,.2)"/><circle cx="75" cy="70" r="3" fill="rgba(255,255,255,.15)"/><circle cx="90" cy="70" r="3" fill="rgba(255,255,255,.12)"/></svg>
+          </div>
+          <div class="project-meta"><div class="project-stage">Intermediate · Hardware Integration</div><div class="project-domain">IoT / Environmental Sensing</div><h3>SewerSense</h3><p>An ESP32 sensing project bringing environmental observations and device state into a unified interface.</p><span class="project-link arrow">View Project</span></div>
+        </a></article>
       </div>
     </div>
   </section>
 
-  <!-- ════════════ WORKING PRINCIPLES ════════════ -->
+  <!-- PRINCIPLES -->
   <section class="principles" id="principles">
     <div class="container">
       <div class="principles-head reveal">
@@ -1219,28 +798,15 @@
         <h2 class="section-title">Clear thinking. Reviewable progress.</h2>
         <p class="section-desc">A practical process keeps the scope understandable and the engineering grounded.</p>
       </div>
-
       <div class="principles-grid">
-        <div class="principle reveal reveal-d1">
-          <div class="principle-num">01</div>
-          <h3>Define the question</h3>
-          <p>Clarify the problem, constraints, and intended outcome before selecting components or promising a result.</p>
-        </div>
-        <div class="principle reveal reveal-d2">
-          <div class="principle-num">02</div>
-          <h3>Make progress visible</h3>
-          <p>Break the work into reviewable stages, document decisions, and distinguish a concept from a tested subsystem.</p>
-        </div>
-        <div class="principle reveal reveal-d3">
-          <div class="principle-num">03</div>
-          <h3>Leave understanding behind</h3>
-          <p>Explain the design, share the relevant documentation, and make the next development step clear.</p>
-        </div>
+        <div class="principle reveal rd1"><div class="principle-num">01</div><h3>Define the question</h3><p>Clarify the problem, constraints, and intended outcome before selecting components or promising a result.</p></div>
+        <div class="principle reveal rd2"><div class="principle-num">02</div><h3>Make progress visible</h3><p>Break the work into reviewable stages, document decisions, and distinguish a concept from a tested subsystem.</p></div>
+        <div class="principle reveal rd3"><div class="principle-num">03</div><h3>Leave understanding behind</h3><p>Explain the design, share the relevant documentation, and make the next development step clear.</p></div>
       </div>
     </div>
   </section>
 
-  <!-- ════════════ CTA ════════════ -->
+  <!-- CTA -->
   <section class="cta" id="contact">
     <div class="container">
       <div class="cta-box reveal">
@@ -1248,8 +814,8 @@
         <h2 class="section-title">Ready to Build Something Extraordinary?</h2>
         <p class="section-desc">Bring a project idea, a technical challenge, or a prototype brief. Let's define a practical first step together.</p>
         <div class="cta-actions">
-          <a href="https://wa.me/919360108408" target="_blank" rel="noopener noreferrer" class="btn btn-white arrow">Start on WhatsApp</a>
-          <a href="#work" class="btn btn-outline-w">View Our Work</a>
+          <a href="https://wa.me/919360108408" target="_blank" rel="noopener noreferrer" class="btn btn-w arrow">Start on WhatsApp</a>
+          <a href="#work" class="btn btn-ow">View Our Work</a>
         </div>
         <a href="mailto:mohammedvashir75@gmail.com" class="cta-email">Send an Email</a>
         <p class="cta-location">Kalpakkam, Tamil Nadu 603102 · India</p>
@@ -1259,160 +825,134 @@
 
   </main>
 
-  <!-- ════════════ FOOTER ════════════ -->
+  <!-- FOOTER -->
   <footer class="footer">
     <div class="container">
       <div class="footer-grid">
-        <div class="footer-brand">
-          <a href="#" class="wordmark">4TECH</a>
-          <p>Independent engineering across embedded systems, robotics, RF, and practical prototyping. Built with curiosity. Developed with care.</p>
-        </div>
-        <div class="footer-col">
-          <h4>Explore</h4>
-          <ul>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#work">Selected Work</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>More from 4TECH</h4>
-          <ul>
-            <li><a href="https://4tech-9cy.pages.dev/projects">Project Library</a></li>
-            <li><a href="https://4tech-9cy.pages.dev/portfolio">Founder Portfolio</a></li>
-            <li><a href="https://4tech-9cy.pages.dev/resume">Résumé</a></li>
-            <li><a href="https://4tech-9cy.pages.dev/account">Customer Login</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Connect</h4>
-          <p style="font-size:13px;color:var(--text-light);margin-bottom:14px">Kalpakkam, Tamil Nadu 603102</p>
+        <div class="footer-brand"><a href="#" class="wordmark">4TECH</a><p>Independent engineering across embedded systems, robotics, RF, and practical prototyping. Built with curiosity. Developed with care.</p></div>
+        <div class="footer-col"><h4>Explore</h4><ul><li><a href="#services">Services</a></li><li><a href="#about">About</a></li><li><a href="#work">Selected Work</a></li><li><a href="#contact">Contact</a></li></ul></div>
+        <div class="footer-col"><h4>More from 4TECH</h4><ul><li><a href="https://4tech-9cy.pages.dev/projects">Project Library</a></li><li><a href="https://4tech-9cy.pages.dev/portfolio">Founder Portfolio</a></li><li><a href="https://4tech-9cy.pages.dev/resume">Résumé</a></li><li><a href="https://4tech-9cy.pages.dev/account">Customer Login</a></li></ul></div>
+        <div class="footer-col"><h4>Connect</h4><p style="font-size:13px;color:var(--t3);margin-bottom:14px">Kalpakkam, Tamil Nadu 603102</p>
           <div class="social-row">
-            <a href="https://wa.me/919360108408" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="WhatsApp" title="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2a10 10 0 00-8.6 15.1L2 22l5.1-1.3A10 10 0 1012 2z"/></svg></a>
-            <a href="https://github.com/4techno" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="GitHub" title="GitHub"><svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg></a>
-            <a href="https://www.linkedin.com/in/mohammed-vashir-793b89378/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="LinkedIn" title="LinkedIn"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
-            <a href="https://www.instagram.com/_.herculex._/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Instagram" title="Instagram"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg></a>
-            <a href="mailto:mohammedvashir75@gmail.com" class="social-icon" aria-label="Email" title="Email"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a>
+            <a href="https://wa.me/919360108408" target="_blank" rel="noopener noreferrer" class="soc" aria-label="WhatsApp" title="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2a10 10 0 00-8.6 15.1L2 22l5.1-1.3A10 10 0 1012 2z"/></svg></a>
+            <a href="https://github.com/4techno" target="_blank" rel="noopener noreferrer" class="soc" aria-label="GitHub" title="GitHub"><svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg></a>
+            <a href="https://www.linkedin.com/in/mohammed-vashir-793b89378/" target="_blank" rel="noopener noreferrer" class="soc" aria-label="LinkedIn" title="LinkedIn"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+            <a href="https://www.instagram.com/_.herculex._/" target="_blank" rel="noopener noreferrer" class="soc" aria-label="Instagram" title="Instagram"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/></svg></a>
+            <a href="mailto:mohammedvashir75@gmail.com" class="soc" aria-label="Email" title="Email"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a>
           </div>
         </div>
       </div>
-      <div class="footer-bottom">
-        <p>&copy; 2026 4TECH. All rights reserved. <a href="https://4tech-9cy.pages.dev/privacy">Privacy</a></p>
-      </div>
+      <div class="footer-bottom"><p>&copy; 2026 4TECH. All rights reserved. <a href="https://4tech-9cy.pages.dev/privacy">Privacy</a></p></div>
     </div>
   </footer>
+  </div><!-- /site-wrap -->
 
-  <!-- ═══════════════════════════════════════════
-       JAVASCRIPT
-       ═══════════════════════════════════════════ -->
   <script>
-    (function () {
-      'use strict';
+  (function(){
+    'use strict';
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-      /* ── Navbar scroll ── */
-      const nav = document.getElementById('nav');
-      let ticking = false;
-      window.addEventListener('scroll', function () {
-        if (!ticking) {
-          requestAnimationFrame(function () {
-            nav.classList.toggle('scrolled', window.scrollY > 50);
-            ticking = false;
-          });
-          ticking = true;
-        }
-      }, { passive: true });
+    var stage = document.getElementById('intro-stage');
+    var viewport = document.getElementById('intro-viewport');
+    var spark = document.getElementById('touch-spark');
+    var ripple = document.getElementById('touch-ripple');
+    var siteWrap = document.getElementById('site-wrap');
 
-      /* ── Mobile menu ── */
-      const hamburger = document.getElementById('hamburger');
-      const menu = document.getElementById('mobile-menu');
-      const closeBtn = document.getElementById('mobile-close');
+    window.playTouchAnimation = function() {
+      if (!stage) return;
+      stage.style.display = 'flex';
+      stage.style.opacity = '1';
+      stage.style.visibility = 'visible';
+      viewport.classList.remove('touching');
+      spark.classList.remove('ignite');
+      ripple.classList.remove('ignite');
+      siteWrap.classList.remove('visible');
+      document.body.style.overflow = 'hidden';
 
-      function openMenu() {
-        menu.classList.add('open');
-        hamburger.setAttribute('aria-expanded', 'true');
-        document.body.style.overflow = 'hidden';
-        closeBtn.focus();
-      }
-      function closeMenu() {
-        menu.classList.remove('open');
-        hamburger.setAttribute('aria-expanded', 'false');
+      // Reset hand transforms
+      var rHand = document.getElementById('intro-robot-hand');
+      var hHand = document.getElementById('intro-human-hand');
+      rHand.style.transform = 'translate(-100vw, -50%)';
+      hHand.style.transform = 'translate(100vw, -50%)';
+
+      setTimeout(function() {
+        // Hands slide in toward center
+        viewport.classList.add('touching');
+      }, 100);
+
+      // Hands index fingers meet at exactly 2100ms
+      setTimeout(function() {
+        spark.classList.add('ignite');
+        ripple.classList.add('ignite');
+      }, 2100);
+
+      // Open the website
+      setTimeout(function() {
+        siteWrap.classList.add('visible');
+        stage.style.opacity = '0';
         document.body.style.overflow = '';
-        hamburger.focus();
-      }
+      }, 2800);
 
-      hamburger.addEventListener('click', openMenu);
-      closeBtn.addEventListener('click', closeMenu);
-      menu.querySelectorAll('a').forEach(function (link) {
-        link.addEventListener('click', closeMenu);
+      setTimeout(function() {
+        stage.style.visibility = 'hidden';
+      }, 3600);
+    };
+
+    if (!reduced && stage) {
+      window.playTouchAnimation();
+    } else {
+      if (stage) stage.style.display = 'none';
+      siteWrap.classList.add('visible');
+    }
+
+    // Allow clicking the hero hands to replay the touch animation!
+    var heroTrigger = document.getElementById('hero-hands-trigger');
+    if (heroTrigger) {
+      heroTrigger.addEventListener('click', function() {
+        window.playTouchAnimation();
       });
-      document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape' && menu.classList.contains('open')) closeMenu();
-      });
+    }
 
-      /* ── Scroll reveal ── */
-      var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    /* ── NAV SCROLL ── */
+    var nav = document.getElementById('nav');
+    var tick = false;
+    window.addEventListener('scroll', function(){
+      if(!tick){requestAnimationFrame(function(){nav.classList.toggle('scrolled',window.scrollY>50);tick=false;});tick=true;}
+    },{passive:true});
 
-      if (!prefersReduced) {
-        var reveals = document.querySelectorAll('.reveal');
-        var observer = new IntersectionObserver(function (entries) {
-          entries.forEach(function (entry) {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('visible');
-              observer.unobserve(entry.target);
-            }
-          });
-        }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
-        reveals.forEach(function (el) { observer.observe(el); });
-      } else {
-        document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('visible'); });
-      }
+    /* ── MOBILE MENU ── */
+    var hb = document.getElementById('hamburger');
+    var menu = document.getElementById('mobile-menu');
+    var mc = document.getElementById('mobile-close');
+    function om(){menu.classList.add('open');hb.setAttribute('aria-expanded','true');document.body.style.overflow='hidden';mc.focus();}
+    function cm(){menu.classList.remove('open');hb.setAttribute('aria-expanded','false');document.body.style.overflow='';hb.focus();}
+    hb.addEventListener('click',om);
+    mc.addEventListener('click',cm);
+    menu.querySelectorAll('a').forEach(function(l){l.addEventListener('click',cm);});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape'&&menu.classList.contains('open'))cm();});
 
-      /* ── Stat counter ── */
-      var statNums = document.querySelectorAll('.stat-num[data-target]');
-      if (prefersReduced) {
-        statNums.forEach(function (el) { el.textContent = el.dataset.target; });
-      } else {
-        var counted = new WeakSet();
-        var statObserver = new IntersectionObserver(function (entries) {
-          entries.forEach(function (entry) {
-            if (entry.isIntersecting && !counted.has(entry.target)) {
-              counted.add(entry.target);
-              var el = entry.target;
-              var target = parseInt(el.dataset.target, 10);
-              var start = performance.now();
-              var duration = 1500;
-              function tick(now) {
-                var progress = Math.min((now - start) / duration, 1);
-                var eased = 1 - Math.pow(1 - progress, 3);
-                el.textContent = Math.round(eased * target);
-                if (progress < 1) requestAnimationFrame(tick);
-                else el.textContent = target;
-              }
-              requestAnimationFrame(tick);
-              statObserver.unobserve(el);
-            }
-          });
-        }, { threshold: 0.5 });
-        statNums.forEach(function (el) { statObserver.observe(el); });
-      }
+    /* ── SCROLL REVEAL ── */
+    if(!reduced){
+      var obs=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:.15,rootMargin:'0px 0px -40px 0px'});
+      document.querySelectorAll('.reveal').forEach(function(el){obs.observe(el);});
+    } else {
+      document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('visible');});
+    }
 
-      /* ── Smooth scroll with offset ── */
-      document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
-        anchor.addEventListener('click', function (e) {
-          var target = document.querySelector(this.getAttribute('href'));
-          if (target) {
-            e.preventDefault();
-            if (!prefersReduced) {
-              target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            } else {
-              target.scrollIntoView({ block: 'start' });
-            }
-          }
-        });
-      });
+    /* ── STAT COUNTER ── */
+    var nums=document.querySelectorAll('.stat-num[data-target]');
+    if(reduced){nums.forEach(function(el){el.textContent=el.dataset.target;});}
+    else{
+      var counted=new WeakSet();
+      var so=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting&&!counted.has(e.target)){counted.add(e.target);var el=e.target,t=+el.dataset.target,s=performance.now(),d=1500;function f(n){var p=Math.min((n-s)/d,1);el.textContent=Math.round((1-Math.pow(1-p,3))*t);if(p<1)requestAnimationFrame(f);else el.textContent=t;}requestAnimationFrame(f);so.unobserve(el);}});},{threshold:.5});
+      nums.forEach(function(el){so.observe(el);});
+    }
 
-    })();
+    /* ── SMOOTH SCROLL ── */
+    document.querySelectorAll('a[href^="#"]').forEach(function(a){
+      a.addEventListener('click',function(e){var t=document.querySelector(this.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:reduced?'auto':'smooth',block:'start'});}});
+    });
+  })();
   </script>
 </body>
 </html>
