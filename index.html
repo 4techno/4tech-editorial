@@ -7,17 +7,19 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
   <title>4TECH — Bold Ideas That Start With Vision</title>
-  <meta name="description" content="Independent engineering by Mohammed Vashir in Kalpakkam, India. Explore embedded systems, robotics, RF research, prototype development, and practical learning.">
+  <meta name="description" content="Independent engineering practice by Mohammed Vashir in Kalpakkam, India. Embedded systems, robotics, RF research, rapid prototyping, and 15 complete engineering records.">
   <meta property="og:title" content="4TECH — Bold Ideas That Start With Vision">
-  <meta property="og:description" content="Independent engineering across embedded systems, robotics, RF research, and practical prototyping.">
+  <meta property="og:description" content="Independent engineering across embedded systems, robotics, RF research, and practical prototyping. Complete 15-project catalogue.">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="assets/hands-hero-2x.png?v=2">
   <meta name="theme-color" content="#F5F5F0">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%231a1a1a'/><text x='16' y='22' text-anchor='middle' font-family='sans-serif' font-size='16' font-weight='700' fill='%23fff'>4T</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
+    /* ═══════════════════════════════════════════
+       DESIGN TOKENS & RESET
+       ═══════════════════════════════════════════ */
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
@@ -30,14 +32,15 @@
       --tw: #FFFFFF;
       --accent: #000000;
       --border: #E0E0E0;
+      --border-dark: #222222;
       --serif: 'DM Serif Display', Georgia, serif;
-      --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      --ease: cubic-bezier(.4, 0, .2, 1);
+      --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
       --sp: 120px;
-      --mw: 1180px;
+      --mw: 1200px;
     }
 
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; font-size: 16px; }
     body {
       font-family: var(--sans);
       color: var(--t1);
@@ -45,22 +48,23 @@
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
+      line-height: 1.6;
     }
 
-    /* Authentic Halftone Texture overlay */
+    /* Editorial Halftone Newsprint Overlay */
     body::before {
       content: '';
       position: fixed; inset: 0;
       pointer-events: none; z-index: 0;
-      opacity: .35;
-      background-image: radial-gradient(#C8C8C2 1px, transparent 1px);
-      background-size: 10px 10px;
+      opacity: .32;
+      background-image: radial-gradient(#BEBEB8 1px, transparent 1px);
+      background-size: 11px 11px;
     }
 
-    /* ═══════════════════════════════════════
-       CINEMATIC OPENING TOUCH ANIMATION
-       ═══════════════════════════════════════ */
-    #intro-stage {
+    /* ═══════════════════════════════════════════
+       CINEMATIC OPENING INTRO (WHOLE ARMS TOUCH)
+       ═══════════════════════════════════════════ */
+    #intro-curtain {
       position: fixed;
       inset: 0;
       z-index: 99999;
@@ -70,185 +74,173 @@
       align-items: center;
       justify-content: center;
       overflow: hidden;
-      transition: opacity 0.8s var(--ease), visibility 0.8s;
+      transition: opacity 0.9s var(--ease), visibility 0.9s;
     }
 
-    #intro-stage::before {
+    #intro-curtain::before {
       content: '';
       position: absolute; inset: 0;
       pointer-events: none;
       opacity: .35;
-      background-image: radial-gradient(#C8C8C2 1px, transparent 1px);
-      background-size: 10px 10px;
+      background-image: radial-gradient(#BEBEB8 1px, transparent 1px);
+      background-size: 11px 11px;
     }
 
-    .intro-header-hint {
+    .intro-masthead {
       position: absolute;
-      top: 36px;
+      top: 40px;
       text-align: center;
-      z-index: 5;
+      z-index: 10;
       opacity: 0;
-      animation: fadeIn 0.8s var(--ease) 0.3s forwards;
+      transform: translateY(-10px);
+      animation: introFadeDown 0.8s var(--ease) 0.2s forwards;
     }
-    .intro-header-hint .logo {
-      font-family: var(--sans);
+    .intro-masthead .brand {
       font-size: 22px;
       font-weight: 700;
-      letter-spacing: -0.5px;
-      color: var(--t1);
+      letter-spacing: 2px;
       text-transform: uppercase;
+      color: var(--t1);
     }
-    .intro-header-hint p {
+    .intro-masthead .tag {
       font-size: 11px;
       font-weight: 600;
       letter-spacing: 3px;
       text-transform: uppercase;
       color: var(--t3);
-      margin-top: 6px;
+      margin-top: 4px;
     }
 
-    .intro-hands-viewport {
+    @keyframes introFadeDown {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .intro-stage {
       position: relative;
-      width: 100%;
-      max-width: 1600px;
-      height: 60vh;
-      min-height: 380px;
+      width: 100vw;
+      height: 65vh;
+      max-height: 520px;
+      min-height: 340px;
       display: flex;
       align-items: center;
       justify-content: center;
       pointer-events: none;
     }
 
-    /* Robot Hand (Comes from Left) */
-    .intro-hand-robot {
+    /* Left Robotic Whole Arm Container */
+    .arm-wrapper-left {
       position: absolute;
       right: 50%;
       top: 50%;
-      height: clamp(240px, 40vh, 380px);
-      width: auto;
-      max-width: none;
-      transform: translate(calc(-100vw), -50%);
-      transition: transform 2.1s cubic-bezier(0.16, 1, 0.3, 1);
-      mix-blend-mode: multiply;
-      filter: contrast(1.08) drop-shadow(0 15px 30px rgba(0,0,0,0.08));
+      width: clamp(340px, 48vw, 680px);
+      height: auto;
+      transform: translate3d(-100vw, -50%, 0);
+      transition: transform 2.2s cubic-bezier(0.12, 1, 0.25, 1);
       will-change: transform;
       z-index: 2;
     }
 
-    /* Human Hand (Comes from Right) */
-    .intro-hand-human {
+    /* Right Human Whole Arm Container */
+    .arm-wrapper-right {
       position: absolute;
       left: 50%;
       top: 50%;
-      height: clamp(240px, 40vh, 380px);
-      width: auto;
-      max-width: none;
-      transform: translate(100vw, -50%);
-      transition: transform 2.1s cubic-bezier(0.16, 1, 0.3, 1);
-      mix-blend-mode: multiply;
-      filter: contrast(1.08) drop-shadow(0 15px 30px rgba(0,0,0,0.08));
+      width: clamp(340px, 48vw, 680px);
+      height: auto;
+      transform: translate3d(100vw, -50%, 0);
+      transition: transform 2.2s cubic-bezier(0.12, 1, 0.25, 1);
       will-change: transform;
       z-index: 2;
     }
 
-    /* Contact touch states: index fingers meet at center */
-    .touching .intro-hand-robot {
-      transform: translate(6px, -50%) !important;
+    /* In-motion and Contact Touch States */
+    .stage-touching .arm-wrapper-left {
+      transform: translate3d(8px, -50%, 0) !important;
     }
-    .touching .intro-hand-human {
-      transform: translate(-6px, -50%) !important;
+    .stage-touching .arm-wrapper-right {
+      transform: translate3d(-8px, -50%, 0) !important;
     }
 
-    /* Touch Spark Burst */
-    .touch-spark {
+    .arm-svg {
+      width: 100%;
+      height: auto;
+      display: block;
+      filter: drop-shadow(0 18px 40px rgba(0,0,0,0.06));
+    }
+
+    /* Spark Burst on Contact */
+    .contact-spark {
       position: absolute;
       left: 50%;
-      top: calc(50% - 100px);
-      width: 6px;
-      height: 6px;
+      top: 50%;
+      width: 4px;
+      height: 4px;
       border-radius: 50%;
       background: #FFFFFF;
-      box-shadow: 0 0 20px 8px rgba(255, 255, 255, 0.95), 0 0 45px 15px rgba(26, 26, 26, 0.4);
+      box-shadow: 0 0 25px 12px rgba(255,255,255,1), 0 0 60px 24px rgba(26,26,26,0.5);
       transform: translate(-50%, -50%) scale(0);
       opacity: 0;
-      z-index: 10;
+      z-index: 20;
       pointer-events: none;
     }
 
-    .touch-spark.ignite {
-      animation: sparkPulse 0.9s cubic-bezier(0.1, 0.9, 0.2, 1) forwards;
+    .contact-spark.detonate {
+      animation: sparkBurst 1s cubic-bezier(0.08, 0.9, 0.18, 1) forwards;
     }
 
-    @keyframes sparkPulse {
-      0% {
-        transform: translate(-50%, -50%) scale(0);
-        opacity: 0;
-      }
-      30% {
-        transform: translate(-50%, -50%) scale(5);
-        opacity: 1;
-        box-shadow: 0 0 60px 25px rgba(255, 255, 255, 1), 0 0 100px 40px rgba(0, 0, 0, 0.6);
-      }
-      70% {
-        transform: translate(-50%, -50%) scale(18);
-        opacity: 0.9;
-      }
-      100% {
-        transform: translate(-50%, -50%) scale(50);
-        opacity: 0;
-      }
+    @keyframes sparkBurst {
+      0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+      25% { transform: translate(-50%, -50%) scale(8); opacity: 1; box-shadow: 0 0 80px 30px rgba(255,255,255,1), 0 0 120px 60px rgba(0,0,0,0.8); }
+      70% { transform: translate(-50%, -50%) scale(22); opacity: 0.9; }
+      100% { transform: translate(-50%, -50%) scale(60); opacity: 0; }
     }
 
-    .touch-ripple {
+    .contact-ring {
       position: absolute;
       left: 50%;
-      top: calc(50% - 100px);
+      top: 50%;
       border-radius: 50%;
-      border: 1.5px solid rgba(26, 26, 26, 0.3);
+      border: 2px solid rgba(26,26,26,0.35);
       transform: translate(-50%, -50%) scale(0);
       opacity: 0;
-      z-index: 4;
+      z-index: 15;
       pointer-events: none;
     }
-    .touch-ripple.ignite {
-      animation: rippleExpand 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    .contact-ring.detonate {
+      animation: ringExpand 1.1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
-    @keyframes rippleExpand {
-      0% { width: 10px; height: 10px; opacity: 0.8; transform: translate(-50%, -50%) scale(0); }
-      100% { width: 800px; height: 800px; opacity: 0; transform: translate(-50%, -50%) scale(1); }
+    @keyframes ringExpand {
+      0% { width: 10px; height: 10px; opacity: 0.9; transform: translate(-50%, -50%) scale(0); }
+      100% { width: 900px; height: 900px; opacity: 0; transform: translate(-50%, -50%) scale(1); }
     }
 
-    .intro-tagline {
+    .intro-footer-hint {
       position: absolute;
-      bottom: 40px;
-      font-size: 13px;
+      bottom: 36px;
+      font-size: 12px;
       letter-spacing: 2px;
       text-transform: uppercase;
       color: var(--t2);
       opacity: 0;
-      animation: fadeIn 0.8s var(--ease) 0.5s forwards;
+      animation: introFadeDown 0.8s var(--ease) 0.4s forwards;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    /* ═══════════════════════════════════════
-       SITE WRAPPER
-       ═══════════════════════════════════════ */
-    #site-wrap {
+    /* ═══════════════════════════════════════════
+       WEBSITE MAIN WRAPPER
+       ═══════════════════════════════════════════ */
+    #page-content {
       opacity: 0;
       transition: opacity 0.8s var(--ease);
     }
-    #site-wrap.visible {
+    #page-content.revealed {
       opacity: 1;
     }
 
-    /* ═══════════════════════════════════════
-       UTILITIES & NAVIGATION
-       ═══════════════════════════════════════ */
+    /* ═══════════════════════════════════════════
+       NAVBAR
+       ═══════════════════════════════════════════ */
     .container { max-width: var(--mw); margin: 0 auto; padding: 0 32px; position: relative; z-index: 1; }
+
     .skip-link {
       position: absolute; top: -100%; left: 16px;
       background: var(--accent); color: var(--tw); padding: 12px 24px;
@@ -257,6 +249,58 @@
     }
     .skip-link:focus { top: 0; }
 
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 100; padding: 22px 0;
+      transition: all .35s var(--ease);
+    }
+    .nav.scrolled {
+      background: rgba(245,245,240,0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      padding: 14px 0;
+      box-shadow: 0 1px 0 rgba(0,0,0,0.06);
+    }
+    .nav .container { display: flex; align-items: center; justify-content: space-between; }
+    .nav-left { display: flex; align-items: center; gap: 40px; }
+    .wordmark {
+      font-family: var(--sans); font-size: 21px; font-weight: 700;
+      letter-spacing: -0.5px; color: var(--t1); text-decoration: none; text-transform: uppercase;
+    }
+    .nav-links { display: flex; list-style: none; gap: 32px; }
+    .nav-links a {
+      font-size: 14px; color: var(--t1); text-decoration: none; position: relative;
+      transition: color .2s var(--ease);
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -4px; left: 0;
+      width: 0; height: 1.5px; background: var(--t1); transition: width .3s var(--ease);
+    }
+    .nav-links a:hover::after, .nav-links a:focus-visible::after { width: 100%; }
+
+    .nav-right { display: flex; align-items: center; gap: 20px; }
+    .nav-login { font-size: 14px; color: var(--t1); text-decoration: none; }
+    .nav-cta {
+      font-size: 13px; font-weight: 500; color: var(--tw);
+      background: var(--accent); padding: 10px 22px; border-radius: 100px;
+      text-decoration: none; transition: all .3s var(--ease);
+    }
+    .nav-cta:hover { background: #333; transform: translateY(-1px); }
+
+    .hamburger { display: none; background: 0; border: 0; cursor: pointer; padding: 6px; z-index: 110; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--t1); margin: 5px 0; transition: all .3s var(--ease); }
+    .mobile-menu {
+      position: fixed; inset: 0; background: var(--bg); z-index: 105;
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+      gap: 28px; opacity: 0; pointer-events: none; transition: opacity .3s var(--ease);
+    }
+    .mobile-menu.open { opacity: 1; pointer-events: auto; }
+    .mobile-menu a { font-family: var(--serif); font-size: 32px; color: var(--t1); text-decoration: none; }
+    .mobile-close { position: absolute; top: 22px; right: 28px; background: 0; border: 0; font-size: 32px; cursor: pointer; color: var(--t1); }
+
+    /* ═══════════════════════════════════════════
+       TYPOGRAPHY & BUTTONS
+       ═══════════════════════════════════════════ */
     .kicker {
       font-size: 12px; font-weight: 600; letter-spacing: 3px;
       text-transform: uppercase; color: var(--t3); margin-bottom: 20px;
@@ -265,51 +309,42 @@
       font-family: var(--serif); font-size: clamp(36px, 4.5vw, 56px);
       line-height: 1.15; color: var(--t1); margin-bottom: 20px;
     }
-    .section-desc { font-size: 17px; color: var(--t2); line-height: 1.7; max-width: 540px; }
+    .section-desc { font-size: 17px; color: var(--t2); line-height: 1.7; max-width: 560px; }
     section { scroll-margin-top: 80px; }
 
-    /* Buttons */
     .btn {
       display: inline-flex; align-items: center; gap: 8px;
       font-family: var(--sans); font-size: 14px; font-weight: 500;
       text-decoration: none; border: none; cursor: pointer;
       transition: all .3s var(--ease); white-space: nowrap;
     }
-    .btn-p { background: var(--accent); color: var(--tw); padding: 14px 34px; border-radius: 100px; font-weight: 500; }
-    .btn-p:hover { background: #333; transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,0,0,.18); }
-    .btn-g { background: 0; color: var(--t2); padding: 4px 0; border-bottom: 1px solid var(--border); border-radius: 0; font-size: 15px; }
+    .btn-p {
+      background: var(--accent); color: var(--tw); padding: 15px 36px;
+      border-radius: 100px; font-weight: 500;
+    }
+    .btn-p:hover { background: #333; transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,0,0,0.18); }
+
+    .btn-g {
+      background: 0; color: var(--t2); padding: 6px 0;
+      border-bottom: 1.5px solid var(--border); border-radius: 0; font-size: 15px;
+    }
     .btn-g:hover { color: var(--t1); border-color: var(--t1); }
+
     .btn-w { background: #fff; color: var(--t1); padding: 16px 36px; border-radius: 100px; }
     .btn-w:hover { background: #E8E8E8; transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,0,0,.15); }
-    .btn-ow { background: 0; color: #fff; padding: 16px 36px; border-radius: 100px; border: 1.5px solid rgba(255,255,255,.25); }
+
+    .btn-ow {
+      background: 0; color: #fff; padding: 16px 36px; border-radius: 100px;
+      border: 1.5px solid rgba(255,255,255,.25);
+    }
     .btn-ow:hover { border-color: #fff; background: rgba(255,255,255,.08); transform: translateY(-2px); }
+
     .arrow::after { content: '↗'; font-size: 15px; display: inline-block; transition: transform .3s var(--ease); }
     .arrow:hover::after { transform: translate(3px, -3px); }
 
-    /* Nav */
-    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 22px 0; transition: all .35s var(--ease); }
-    .nav.scrolled { background: rgba(245,245,240,.92); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); padding: 14px 0; box-shadow: 0 1px 0 rgba(0,0,0,.06); }
-    .nav .container { display: flex; align-items: center; justify-content: space-between; }
-    .nav-left { display: flex; align-items: center; gap: 44px; }
-    .wordmark { font-family: var(--sans); font-size: 20px; font-weight: 700; letter-spacing: -.5px; color: var(--t1); text-decoration: none; text-transform: uppercase; }
-    .nav-links { display: flex; list-style: none; gap: 32px; }
-    .nav-links a { font-size: 14px; color: var(--t1); text-decoration: none; position: relative; }
-    .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1.5px; background: var(--t1); transition: width .3s var(--ease); }
-    .nav-links a:hover::after, .nav-links a:focus-visible::after { width: 100%; }
-    .nav-right { display: flex; align-items: center; gap: 20px; }
-    .nav-login { font-size: 14px; color: var(--t1); text-decoration: none; }
-    .nav-cta { font-size: 13px; font-weight: 500; color: var(--tw); background: var(--accent); padding: 10px 22px; border-radius: 100px; text-decoration: none; transition: all .3s var(--ease); }
-    .nav-cta:hover { background: #333; transform: translateY(-1px); }
-    .hamburger { display: none; background: 0; border: 0; cursor: pointer; padding: 6px; z-index: 110; }
-    .hamburger span { display: block; width: 24px; height: 2px; background: var(--t1); margin: 5px 0; transition: all .3s var(--ease); }
-    .mobile-menu { position: fixed; inset: 0; background: var(--bg); z-index: 105; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 28px; opacity: 0; pointer-events: none; transition: opacity .3s var(--ease); }
-    .mobile-menu.open { opacity: 1; pointer-events: auto; }
-    .mobile-menu a { font-family: var(--serif); font-size: 32px; color: var(--t1); text-decoration: none; }
-    .mobile-close { position: absolute; top: 22px; right: 28px; background: 0; border: 0; font-size: 32px; cursor: pointer; color: var(--t1); }
-
-    /* ═══════════════════════════════════════
-       HERO — REDESIGNED EXACTLY LIKE PHOTO
-       ═══════════════════════════════════════ */
+    /* ═══════════════════════════════════════════
+       HERO SECTION — EXACT EDITORIAL COMPOSITION
+       ═══════════════════════════════════════════ */
     .hero {
       min-height: 100vh;
       min-height: 100dvh;
@@ -318,7 +353,7 @@
       justify-content: flex-start;
       align-items: center;
       text-align: center;
-      padding: 130px 24px 40px;
+      padding: 130px 24px 30px;
       position: relative;
       overflow: hidden;
     }
@@ -326,13 +361,13 @@
     .hero-content {
       position: relative;
       z-index: 2;
-      max-width: 780px;
+      max-width: 820px;
       margin: 0 auto;
     }
 
     .hero h1 {
       font-family: var(--serif);
-      font-size: clamp(52px, 7.5vw, 92px);
+      font-size: clamp(52px, 7.8vw, 92px);
       line-height: 1.05;
       letter-spacing: -1.5px;
       color: var(--t1);
@@ -344,7 +379,7 @@
       font-size: 17px;
       color: var(--t2);
       max-width: 520px;
-      margin: 0 auto 34px;
+      margin: 0 auto 32px;
       line-height: 1.65;
     }
 
@@ -352,40 +387,52 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 20px;
-      margin-bottom: 30px;
+      gap: 24px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
     }
 
-    /* THE ICONIC HANDS FROM THE PICTURE */
-    .hero-hands-wrap {
+    /* THE REBUILT HERO WHOLE ARMS ILLUSTRATION (No Cut-off Boxes) */
+    .hero-arms-stage {
       position: relative;
       width: 100%;
-      max-width: 1100px;
+      max-width: 1280px;
+      height: 380px;
       margin: 10px auto 0;
       z-index: 1;
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       cursor: pointer;
     }
 
-    .hero-hands-img {
-      width: 100%;
+    .hero-arm-left {
+      position: absolute;
+      right: 50%;
+      top: 50%;
+      transform: translate3d(-10px, -50%, 0);
+      width: clamp(340px, 45vw, 620px);
       height: auto;
-      max-height: 380px;
-      object-fit: contain;
-      mix-blend-mode: multiply;
-      filter: contrast(1.05);
       transition: transform 0.4s var(--ease);
-      user-select: none;
-      -webkit-user-drag: none;
+    }
+    .hero-arm-right {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate3d(10px, -50%, 0);
+      width: clamp(340px, 45vw, 620px);
+      height: auto;
+      transition: transform 0.4s var(--ease);
     }
 
-    .hero-hands-wrap:hover .hero-hands-img {
-      transform: scale(1.015);
+    .hero-arms-stage:hover .hero-arm-left {
+      transform: translate3d(-2px, -50%, 0);
+    }
+    .hero-arms-stage:hover .hero-arm-right {
+      transform: translate3d(2px, -50%, 0);
     }
 
-    .replay-badge {
+    .replay-control {
       display: inline-flex;
       align-items: center;
       gap: 6px;
@@ -393,29 +440,31 @@
       letter-spacing: 1.5px;
       text-transform: uppercase;
       color: var(--t3);
-      padding: 6px 16px;
+      padding: 6px 18px;
       border: 1px solid var(--border);
       border-radius: 100px;
-      background: rgba(255,255,255,0.6);
-      margin-top: -15px;
-      margin-bottom: 25px;
+      background: rgba(255,255,255,0.7);
+      margin-top: -10px;
+      margin-bottom: 30px;
       cursor: pointer;
       transition: all 0.2s var(--ease);
     }
-    .replay-badge:hover {
+    .replay-control:hover {
       color: var(--t1);
       border-color: var(--t1);
       background: #FFFFFF;
+      transform: translateY(-1px);
     }
 
-    /* ═══════════════════════════════════════
-       CAPABILITIES (Matching Photo Trust Bar)
-       ═══════════════════════════════════════ */
+    /* ═══════════════════════════════════════════
+       CAPABILITY STRIP (Trust Bar Style)
+       ═══════════════════════════════════════════ */
     .capabilities {
       padding: 44px 0 64px;
       text-align: center;
       position: relative;
       z-index: 1;
+      border-top: 1px solid var(--border);
     }
     .cap-label {
       font-size: 13px;
@@ -428,78 +477,227 @@
       align-items: center;
       justify-content: center;
       flex-wrap: wrap;
-      gap: 16px 38px;
+      gap: 16px 36px;
     }
     .cap-item {
       font-size: 14px;
       font-weight: 600;
       letter-spacing: 0.5px;
       color: var(--t1);
-      opacity: 0.65;
+      opacity: 0.6;
       transition: opacity 0.3s;
     }
     .cap-item:hover { opacity: 1; }
 
-    /* ═══════════════════════════════════════
-       SERVICES
-       ═══════════════════════════════════════ */
+    /* ═══════════════════════════════════════════
+       SERVICES (6 Considered Cards)
+       ═══════════════════════════════════════════ */
     .services { padding: var(--sp) 0; position: relative; z-index: 1; }
     .services-head { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: end; margin-bottom: 72px; }
     .card-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-    .card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 36px 28px; position: relative; overflow: hidden; transition: transform .35s var(--ease), box-shadow .35s var(--ease); }
-    .card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform .4s var(--ease); }
+    .card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 16px;
+      padding: 38px 30px; position: relative; overflow: hidden;
+      transition: transform .35s var(--ease), box-shadow .35s var(--ease);
+    }
+    .card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: var(--accent); transform: scaleX(0); transform-origin: left;
+      transition: transform .4s var(--ease);
+    }
     .card:hover { transform: translateY(-6px); box-shadow: 0 20px 60px rgba(0,0,0,.08); }
     .card:hover::before { transform: scaleX(1); }
-    .card-icon { width: 48px; height: 48px; background: var(--bg); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
+    .card-icon {
+      width: 48px; height: 48px; background: var(--bg); border-radius: 12px;
+      display: flex; align-items: center; justify-content: center; margin-bottom: 22px;
+    }
     .card-icon svg { width: 22px; height: 22px; stroke: var(--t1); fill: none; stroke-width: 1.5; }
     .card h3 { font-family: var(--serif); font-size: 21px; margin-bottom: 10px; }
     .card p { font-size: 14px; color: var(--t2); line-height: 1.7; }
 
-    /* ═══════════════════════════════════════
-       ABOUT (dark)
-       ═══════════════════════════════════════ */
+    /* ═══════════════════════════════════════════
+       ABOUT SECTION (Dark Halftone Room)
+       ═══════════════════════════════════════════ */
     .about { padding: var(--sp) 0; background: var(--dark); position: relative; z-index: 1; }
-    .about::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(rgba(255,255,255,.06) 1px, transparent 1px); background-size: 12px 12px; pointer-events: none; }
+    .about::before {
+      content: ''; position: absolute; inset: 0;
+      background-image: radial-gradient(rgba(255,255,255,.06) 1px, transparent 1px);
+      background-size: 12px 12px; pointer-events: none;
+    }
     .about .kicker { color: rgba(255,255,255,.35); }
     .about .section-title { color: var(--tw); max-width: 600px; }
     .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start; }
     .about-text p { font-size: 16px; color: rgba(255,255,255,.5); line-height: 1.75; margin-bottom: 16px; }
     .about-text .edu { font-size: 13px; color: rgba(255,255,255,.28); margin-bottom: 28px; }
-    .about-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+    .about-btns { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 10px; }
     .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
     .stat { padding-top: 24px; border-top: 1px solid rgba(255,255,255,.08); }
     .stat-num { font-family: var(--serif); font-size: 48px; color: var(--tw); line-height: 1; margin-bottom: 6px; }
     .stat-label { font-size: 12px; color: rgba(255,255,255,.35); text-transform: uppercase; letter-spacing: 1.5px; }
     .stats-note { grid-column: span 2; font-size: 12px; color: rgba(255,255,255,.2); margin-top: -8px; }
 
-    /* ═══════════════════════════════════════
-       WORK
-       ═══════════════════════════════════════ */
+    /* ═══════════════════════════════════════════
+       COMPLETE 15-PROJECT SHOWCASE
+       ═══════════════════════════════════════════ */
     .work { padding: var(--sp) 0; position: relative; z-index: 1; }
-    .work-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; margin-bottom: 56px; flex-wrap: wrap; }
+    .work-head {
+      display: flex; justify-content: space-between; align-items: flex-end;
+      gap: 24px; margin-bottom: 40px; flex-wrap: wrap;
+    }
     .work-head-text .section-desc { margin-top: 8px; font-size: 15px; }
-    .work-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-    .project { border-radius: 16px; overflow: hidden; background: var(--card); border: 1px solid var(--border); transition: transform .35s var(--ease), box-shadow .35s var(--ease); }
-    .project:hover { transform: translateY(-4px); box-shadow: 0 20px 50px rgba(0,0,0,.1); }
-    .project:first-child { grid-row: span 2; }
-    .project a { display: flex; flex-direction: column; height: 100%; text-decoration: none; color: inherit; }
-    .project-visual { flex: 1; min-height: 260px; display: flex; align-items: center; justify-content: center; position: relative; }
-    .project-visual::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,.72) 0%, rgba(0,0,0,.15) 40%, transparent 65%); }
-    .project-meta { position: absolute; bottom: 0; left: 0; right: 0; padding: 28px; z-index: 2; }
-    .project-stage { display: inline-block; font-size: 10px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,.5); margin-bottom: 4px; }
-    .project-domain { font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,.4); margin-bottom: 8px; }
-    .project-meta h3 { font-family: var(--serif); font-size: 22px; color: var(--tw); margin-bottom: 8px; }
-    .project-meta p { font-size: 13px; color: rgba(255,255,255,.55); line-height: 1.6; max-width: 400px; }
-    .project-link { font-size: 12px; font-weight: 600; color: rgba(255,255,255,.6); margin-top: 12px; display: inline-block; }
+
+    /* Interactive Category Filter Pills */
+    .filter-bar {
+      display: flex; gap: 10px; margin-bottom: 44px; flex-wrap: wrap;
+    }
+    .filter-btn {
+      background: var(--card); border: 1px solid var(--border); color: var(--t2);
+      padding: 8px 20px; border-radius: 100px; font-size: 13px; font-weight: 500;
+      cursor: pointer; transition: all 0.25s var(--ease);
+    }
+    .filter-btn:hover { color: var(--t1); border-color: var(--t1); }
+    .filter-btn.active {
+      background: var(--accent); color: var(--tw); border-color: var(--accent);
+    }
+
+    .projects-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .project-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease), opacity 0.3s;
+      position: relative;
+    }
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.08);
+    }
+
+    .project-schematic {
+      height: 180px;
+      background: #121212;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .project-schematic svg {
+      width: 100%;
+      height: 100%;
+      opacity: 0.85;
+      transition: transform 0.5s var(--ease);
+    }
+    .project-card:hover .project-schematic svg {
+      transform: scale(1.04);
+    }
+
+    .project-body {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .project-badges {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+    .badge-diff {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 4px;
+      background: #ECECE8;
+      color: #333;
+    }
+    .badge-diff.research { background: #1A1A1A; color: #FFF; }
+    .badge-diff.advanced { background: #333333; color: #FFF; }
+    .badge-stage {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--t2);
+      font-style: italic;
+    }
+
+    .project-body h3 {
+      font-family: var(--serif);
+      font-size: 20px;
+      line-height: 1.25;
+      color: var(--t1);
+      margin-bottom: 8px;
+    }
+    .project-domain {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--t3);
+      margin-bottom: 12px;
+    }
+    .project-body p {
+      font-size: 13px;
+      color: var(--t2);
+      line-height: 1.6;
+      margin-bottom: 18px;
+      flex: 1;
+    }
+
+    .tech-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 18px;
+    }
+    .tech-tag {
+      font-size: 10px;
+      font-weight: 500;
+      background: var(--bg);
+      color: var(--t2);
+      padding: 3px 8px;
+      border-radius: 4px;
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .project-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--t1);
+      text-decoration: none;
+      border-top: 1px solid var(--border);
+      padding-top: 14px;
+      transition: color 0.2s;
+    }
+    .project-action:hover { color: #555; }
 
     /* ═══════════════════════════════════════
-       PRINCIPLES
+       WORKING PRINCIPLES (Honest Methodology)
        ═══════════════════════════════════════ */
-    .principles { padding: var(--sp) 0; position: relative; z-index: 1; }
+    .principles { padding: var(--sp) 0; position: relative; z-index: 1; border-top: 1px solid var(--border); }
     .principles-head { text-align: center; margin-bottom: 56px; }
     .principles-head .section-desc { margin: 0 auto; }
     .principles-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-    .principle { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px 28px; transition: transform .35s var(--ease), box-shadow .35s var(--ease); }
+    .principle {
+      background: var(--card); border: 1px solid var(--border); border-radius: 16px;
+      padding: 40px 28px; transition: transform .35s var(--ease), box-shadow .35s var(--ease);
+    }
     .principle:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,.06); }
     .principle-num { font-family: var(--serif); font-size: 36px; color: var(--t1); opacity: .12; margin-bottom: 16px; }
     .principle h3 { font-family: var(--serif); font-size: 20px; margin-bottom: 12px; }
@@ -509,13 +707,23 @@
        CTA & FOOTER
        ═══════════════════════════════════════ */
     .cta { padding: 80px 0 100px; position: relative; z-index: 1; }
-    .cta-box { background: var(--dark); border-radius: 24px; padding: 80px 60px; text-align: center; position: relative; overflow: hidden; }
-    .cta-box::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(rgba(255,255,255,.04) 1px, transparent 1px); background-size: 14px 14px; pointer-events: none; }
+    .cta-box {
+      background: var(--dark); border-radius: 24px; padding: 80px 60px;
+      text-align: center; position: relative; overflow: hidden;
+    }
+    .cta-box::before {
+      content: ''; position: absolute; inset: 0;
+      background-image: radial-gradient(rgba(255,255,255,.04) 1px, transparent 1px);
+      background-size: 14px 14px; pointer-events: none;
+    }
     .cta-box .kicker { color: rgba(255,255,255,.35); }
     .cta-box .section-title { color: var(--tw); max-width: 560px; margin: 0 auto 16px; }
     .cta-box .section-desc { color: rgba(255,255,255,.45); margin: 0 auto 36px; text-align: center; }
     .cta-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
-    .cta-email { display: inline-block; margin-top: 20px; font-size: 13px; color: rgba(255,255,255,.35); text-decoration: none; border-bottom: 1px solid rgba(255,255,255,.12); }
+    .cta-email {
+      display: inline-block; margin-top: 20px; font-size: 13px;
+      color: rgba(255,255,255,.35); text-decoration: none; border-bottom: 1px solid rgba(255,255,255,.12);
+    }
     .cta-location { font-size: 13px; color: rgba(255,255,255,.2); margin-top: 20px; }
 
     .footer { padding: 72px 0 36px; border-top: 1px solid var(--border); position: relative; z-index: 1; }
@@ -527,11 +735,18 @@
     .footer-col a { font-size: 14px; color: var(--t2); text-decoration: none; transition: color .2s; }
     .footer-col a:hover { color: var(--t1); }
     .social-row { display: flex; gap: 10px; margin-top: 4px; }
-    .soc { width: 38px; height: 38px; border-radius: 50%; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; text-decoration: none; transition: all .3s var(--ease); }
+    .soc {
+      width: 38px; height: 38px; border-radius: 50%; border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center; text-decoration: none;
+      transition: all .3s var(--ease);
+    }
     .soc:hover { background: var(--accent); border-color: var(--accent); }
     .soc:hover svg { stroke: #fff; }
     .soc svg { width: 16px; height: 16px; stroke: var(--t2); fill: none; stroke-width: 2; }
-    .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 28px; border-top: 1px solid var(--border); flex-wrap: wrap; gap: 12px; }
+    .footer-bottom {
+      display: flex; justify-content: space-between; align-items: center;
+      padding-top: 28px; border-top: 1px solid var(--border); flex-wrap: wrap; gap: 12px;
+    }
     .footer-bottom p { font-size: 13px; color: var(--t3); }
     .footer-bottom a { color: var(--t3); text-decoration: none; border-bottom: 1px solid var(--border); }
 
@@ -541,15 +756,17 @@
     .rd1 { transition-delay: .1s; } .rd2 { transition-delay: .2s; } .rd3 { transition-delay: .3s; }
 
     @media (prefers-reduced-motion: reduce) {
-      #intro-stage { display: none !important; }
-      #site-wrap { opacity: 1 !important; }
+      #intro-curtain { display: none !important; }
+      #page-content { opacity: 1 !important; }
       .reveal { opacity: 1; transform: none; transition: none; }
     }
 
     /* Responsive */
     @media (max-width: 1024px) {
       .card-grid, .principles-grid { grid-template-columns: repeat(2, 1fr); }
+      .projects-container { grid-template-columns: repeat(2, 1fr); }
       .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
+      .hero-arms-stage { height: 300px; }
     }
     @media (max-width: 768px) {
       :root { --sp: 80px; }
@@ -559,16 +776,15 @@
       .hero { padding: 110px 20px 30px; }
       .hero h1 { font-size: clamp(40px, 11vw, 56px); }
       .services-head { grid-template-columns: 1fr; gap: 16px; }
-      .card-grid, .about-grid, .work-grid, .principles-grid { grid-template-columns: 1fr; }
-      .project:first-child { grid-row: span 1; }
-      .project-visual { min-height: 220px; }
+      .card-grid, .about-grid, .principles-grid, .projects-container { grid-template-columns: 1fr; }
+      .hero-arms-stage { height: 240px; }
+      .hero-arm-left, .hero-arm-right { width: 48vw; }
       .stats-note { grid-column: span 1; }
       .cta-box { padding: 48px 24px; border-radius: 16px; }
       .cta-actions { flex-direction: column; align-items: center; }
       .footer-grid { grid-template-columns: 1fr; gap: 28px; }
       .footer-bottom { flex-direction: column; text-align: center; }
-      .intro-hands-viewport { height: 50vh; }
-      .intro-hand-robot, .intro-hand-human { height: clamp(180px, 35vh, 260px); }
+      .arm-wrapper-left, .arm-wrapper-right { width: 52vw; }
     }
   </style>
 </head>
@@ -576,35 +792,176 @@
 <body>
 
   <!-- ════════════════════════════════════════
-       CINEMATIC OPENING INTRO:
-       Robot hand comes from left, Human hand from right.
-       When index fingers touch → spark ignites → site opens!
+       SVG DEF PATTERNS FOR REBUILT WHOLE ARMS
+       (Halftone stipple, mechanical etchings)
        ════════════════════════════════════════ -->
-  <div id="intro-stage" aria-hidden="true">
-    <div class="intro-header-hint">
-      <div class="logo">4TECH</div>
-      <p>Engineering · Robotics · RF · Embedded Systems</p>
+  <svg style="position: absolute; width: 0; height: 0; overflow: hidden;" aria-hidden="true">
+    <defs>
+      <!-- Halftone pattern 1 (Dark stipple) -->
+      <pattern id="pat-ht-dark" width="4" height="4" patternUnits="userSpaceOnUse">
+        <circle cx="2" cy="2" r="1.1" fill="#1A1A1A"/>
+      </pattern>
+      <!-- Halftone pattern 2 (Medium mechanical dots) -->
+      <pattern id="pat-ht-med" width="5" height="5" patternUnits="userSpaceOnUse">
+        <circle cx="2.5" cy="2.5" r="0.8" fill="#3A3A3A"/>
+      </pattern>
+      <!-- Halftone pattern 3 (Fine human skin stipple) -->
+      <pattern id="pat-ht-fine" width="5" height="5" patternUnits="userSpaceOnUse">
+        <circle cx="2.5" cy="2.5" r="0.6" fill="#666666"/>
+      </pattern>
+      <!-- Mechanical hatch pattern -->
+      <pattern id="pat-hatch" width="6" height="6" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
+        <line x1="0" y1="0" x2="0" y2="6" stroke="#222" stroke-width="1.2" />
+      </pattern>
+    </defs>
+  </svg>
+
+  <!-- ════════════════════════════════════════
+       CINEMATIC INTRO — THE REBUILT WHOLE ARMS
+       Both whole arms sweep in from offscreen.
+       Index fingertips meet at center → touch spark.
+       ════════════════════════════════════════ -->
+  <div id="intro-curtain" aria-hidden="true">
+    <div class="intro-masthead">
+      <div class="brand">4TECH</div>
+      <div class="tag">Engineering · Robotics · RF · Embedded Systems</div>
     </div>
 
-    <div class="intro-hands-viewport" id="intro-viewport">
-      <!-- Authentic Robot Hand from the picture -->
-      <img id="intro-robot-hand" class="intro-hand-robot" src="assets/robot-hand-2x.png?v=2" alt="Robot Hand">
-      <!-- Authentic Human Hand from the picture -->
-      <img id="intro-human-hand" class="intro-hand-human" src="assets/human-hand-2x.png?v=2" alt="Human Hand">
-      <!-- Touch burst effects -->
-      <div class="touch-spark" id="touch-spark"></div>
-      <div class="touch-ripple" id="touch-ripple"></div>
+    <div class="intro-stage" id="intro-stage">
+      <!-- ── WHOLE ROBOTIC ARM (LEFT) ── -->
+      <div class="arm-wrapper-left" id="arm-left-box">
+        <svg class="arm-svg" viewBox="0 0 700 360" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Forearm Chassis Body (Extends all the way from x=0 offscreen) -->
+          <path d="M0,280 C60,265 140,245 220,225 C300,205 380,185 450,172 L460,170 C480,166 500,165 520,168 L530,170 C540,172 550,175 560,180 L580,192 C600,204 620,212 630,215 L640,218 C645,220 648,225 645,230 C642,235 635,238 625,238 L600,238 C580,238 560,245 540,255 L510,270 C470,290 420,312 360,332 C280,358 180,380 0,390 Z" fill="url(#pat-ht-dark)" opacity="0.95"/>
+          
+          <!-- Outer Titanium Armor Plates -->
+          <path d="M0,240 C80,225 180,200 270,180 C360,160 440,148 500,146 L510,146 C525,146 545,152 565,164 L600,186 C615,195 628,202 636,206" stroke="#1A1A1A" stroke-width="2.5" fill="none"/>
+          <path d="M0,295 C70,280 160,260 250,240 C340,220 420,206 480,200" stroke="#1A1A1A" stroke-width="1.8" stroke-dasharray="8 4" fill="none" opacity="0.4"/>
+          <path d="M50,330 C130,305 220,280 310,258 C400,236 470,224 520,220" stroke="#1A1A1A" stroke-width="1.5" fill="none" opacity="0.3"/>
+          
+          <!-- Hydraulic Actuators & Cylinders -->
+          <rect x="180" y="202" width="160" height="16" rx="4" transform="rotate(-12 180 202)" fill="#1A1A1A" opacity="0.85"/>
+          <rect x="220" y="196" width="90" height="8" rx="2" transform="rotate(-12 220 196)" fill="#FFFFFF" opacity="0.9"/>
+          <circle cx="178" cy="202" r="8" fill="#1A1A1A"/><circle cx="178" cy="202" r="3" fill="#FFF"/>
+          <circle cx="336" cy="168" r="7" fill="#1A1A1A"/><circle cx="336" cy="168" r="2.5" fill="#FFF"/>
+
+          <!-- Secondary Hydraulic Piston -->
+          <rect x="260" y="235" width="130" height="12" rx="3" transform="rotate(-11 260 235)" fill="#2A2A2A" opacity="0.7"/>
+          <rect x="290" y="231" width="70" height="6" rx="2" transform="rotate(-11 290 231)" fill="#FFF" opacity="0.8"/>
+
+          <!-- Wrist Gimbal & Swivel Ring -->
+          <ellipse cx="490" cy="175" rx="24" ry="32" transform="rotate(-15 490 175)" stroke="#1A1A1A" stroke-width="3" fill="none"/>
+          <ellipse cx="490" cy="175" rx="16" ry="24" transform="rotate(-15 490 175)" stroke="#1A1A1A" stroke-width="1.8" fill="url(#pat-hatch)" opacity="0.6"/>
+          <!-- Industrial Pivot Bolts -->
+          <circle cx="488" cy="155" r="4.5" fill="#1A1A1A"/><circle cx="488" cy="155" r="1.8" fill="#FFF"/>
+          <circle cx="492" cy="195" r="4.5" fill="#1A1A1A"/><circle cx="492" cy="195" r="1.8" fill="#FFF"/>
+
+          <!-- Cable Conduit Loop -->
+          <path d="M120,290 C180,310 260,315 350,285 C420,260 460,225 500,205" stroke="#1A1A1A" stroke-width="3" fill="none" opacity="0.75"/>
+          <path d="M140,305 C200,325 280,325 365,295 C430,270 470,235 505,215" stroke="#1A1A1A" stroke-width="1.5" stroke-dasharray="4 3" fill="none" opacity="0.5"/>
+
+          <!-- Robotic Palm & Knuckle Carapace -->
+          <path d="M510,165 C540,158 580,160 610,172 L620,178 C635,188 645,198 640,210 C635,220 620,225 595,224 L565,220 C540,216 525,200 515,188 Z" fill="url(#pat-ht-med)" stroke="#1A1A1A" stroke-width="2"/>
+          <!-- Hex Knuckle Caps -->
+          <polygon points="562,168 568,164 574,168 574,176 568,180 562,176" fill="#1A1A1A"/>
+          <polygon points="585,176 591,172 597,176 597,184 591,188 585,184" fill="#1A1A1A"/>
+          <polygon points="605,188 611,184 617,188 617,196 611,200 605,196" fill="#1A1A1A"/>
+
+          <!-- EXTENDED ROBOTIC INDEX FINGER (Reaching directly to x=685, y=148) -->
+          <!-- Proximal Phalanx -->
+          <path d="M570,164 L608,154 C614,152 620,154 624,158 L630,164 C632,167 630,172 624,174 L586,182 Z" fill="#222222" stroke="#1A1A1A" stroke-width="1.8"/>
+          <circle cx="616" cy="160" r="4" fill="#1A1A1A"/><circle cx="616" cy="160" r="1.5" fill="#FFF"/>
+          <!-- Intermediate Phalanx -->
+          <path d="M624,158 L656,150 C660,149 664,151 667,154 L670,158 C672,161 670,164 666,166 L632,172 Z" fill="#1A1A1A" stroke="#1A1A1A" stroke-width="1.6"/>
+          <circle cx="660" cy="155" r="3" fill="#1A1A1A"/><circle cx="660" cy="155" r="1.2" fill="#FFF"/>
+          <!-- Distal Fingertip & Electrode (Fingertip tip is at x=685, y=148) -->
+          <path d="M667,154 L682,148 C685,147 688,149 686,152 L680,158 C677,161 672,163 668,162 Z" fill="#0A0A0A" stroke="#1A1A1A" stroke-width="2"/>
+          <!-- Contact Point Node -->
+          <circle cx="685" cy="148" r="3" fill="#1A1A1A"/>
+          <circle cx="685" cy="148" r="1" fill="#FFFFFF"/>
+
+          <!-- Folded Supporting Digits (Middle, Ring, Pinky, Thumb) -->
+          <!-- Middle Finger (tucked) -->
+          <path d="M592,180 L625,182 C635,184 640,192 638,200 L632,204 C626,206 618,204 612,198 L588,190 Z" fill="#333333" stroke="#1A1A1A" stroke-width="1.5"/>
+          <!-- Ring Finger (tucked) -->
+          <path d="M608,196 L632,204 C638,208 640,215 636,220 L628,222 C622,222 615,218 610,212 L596,204 Z" fill="#2A2A2A" stroke="#1A1A1A" stroke-width="1.4"/>
+          <!-- Thumb Actuator (lower articulated angle) -->
+          <path d="M530,192 L550,225 C555,232 552,240 545,245 L535,248 C528,248 522,242 518,235 L512,205 Z" fill="#262626" stroke="#1A1A1A" stroke-width="1.8"/>
+          <circle cx="546" cy="235" r="4" fill="#1A1A1A"/><circle cx="546" cy="235" r="1.5" fill="#FFF"/>
+
+          <!-- Authentic Stipple Engraving Lines on Forearm -->
+          <g stroke="#1A1A1A" stroke-width="0.75" opacity="0.3">
+            <line x1="20" y1="260" x2="80" y2="245"/>
+            <line x1="100" y1="240" x2="160" y2="225"/>
+            <line x1="180" y1="220" x2="240" y2="205"/>
+            <line x1="260" y1="200" x2="320" y2="185"/>
+            <line x1="340" y1="180" x2="400" y2="168"/>
+          </g>
+        </svg>
+      </div>
+
+      <!-- ── WHOLE HUMAN ARM (RIGHT) ── -->
+      <div class="arm-wrapper-right" id="arm-right-box">
+        <svg class="arm-svg" viewBox="0 0 700 360" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Full Human Muscular Forearm (Extends all the way from x=700 offscreen) -->
+          <path d="M700,270 C630,250 560,228 490,205 C420,182 350,165 285,152 C230,142 195,142 165,146 L150,148 C140,150 120,155 100,160 L60,172 C40,180 25,188 18,194 L15,197 C12,200 12,205 16,208 C20,210 26,209 35,205 L60,195 C75,190 90,190 102,194 L130,206 C155,218 185,232 215,248 C275,280 345,315 420,342 C510,375 600,388 700,392 Z" fill="url(#pat-ht-fine)" opacity="0.95"/>
+
+          <!-- Anatomical Forearm Contours (Brachioradialis & Flexor Carpi) -->
+          <path d="M700,230 C620,210 540,188 460,165 C390,145 320,132 250,128 C200,126 160,132 125,142 L110,146" stroke="#1A1A1A" stroke-width="2.2" fill="none"/>
+          <path d="M680,265 C600,245 520,220 445,196 C370,172 305,158 240,154" stroke="#1A1A1A" stroke-width="1.2" stroke-dasharray="6 4" fill="none" opacity="0.35"/>
+          <path d="M650,295 C570,275 490,250 415,225 C345,200 280,186 210,180" stroke="#1A1A1A" stroke-width="1.2" fill="none" opacity="0.25"/>
+
+          <!-- Wrist Anatomy & Tendon Relief -->
+          <path d="M210,140 C195,138 178,142 162,150" stroke="#1A1A1A" stroke-width="1.8" fill="none" opacity="0.6"/>
+          <path d="M205,152 C190,150 174,154 158,162" stroke="#1A1A1A" stroke-width="1.2" fill="none" opacity="0.4"/>
+          <!-- Flexor Tendon Line -->
+          <path d="M340,175 C280,168 230,162 175,160" stroke="#1A1A1A" stroke-width="1.2" stroke-dasharray="4 3" fill="none" opacity="0.3"/>
+
+          <!-- Organic Palm & Knuckle Modeling -->
+          <path d="M190,144 C165,144 135,150 110,162 L95,170 C80,180 72,192 78,204 C84,214 98,218 120,214 L145,210 C170,204 185,188 194,172 Z" fill="#FFFFFF" fill-opacity="0.2" stroke="#1A1A1A" stroke-width="1.8"/>
+
+          <!-- EXTENDED HUMAN INDEX FINGER (Reaching directly to x=15, y=148) -->
+          <!-- Proximal Joint -->
+          <path d="M125,142 C105,140 85,142 66,145 C55,147 45,150 35,151 L25,151 C18,151 14,149 15,148 C16,147 20,145 28,143 L50,138 C70,134 95,134 118,138 Z" fill="#1A1A1A" opacity="0.85"/>
+          <!-- Full Expressive Michelangelo Index Path -->
+          <path d="M130,142 C100,138 68,140 38,144 L22,146 C17,147 14,147 15,148 C16,149 20,150 26,151 L52,154 C75,156 102,154 125,150" stroke="#1A1A1A" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+          <!-- Fingertip Contact Point (x=15, y=148 touches the robot at x=685, y=148) -->
+          <circle cx="15" cy="148" r="3.2" fill="#1A1A1A"/>
+          <circle cx="15" cy="148" r="1.2" fill="#FFFFFF"/>
+
+          <!-- Gently Curled Supporting Fingers (Middle, Ring, Little, Thumb) -->
+          <!-- Middle Finger (soft curl) -->
+          <path d="M105,164 C88,168 70,176 56,186 C50,192 52,198 60,198 C68,198 78,192 88,185 L112,174 Z" stroke="#1A1A1A" stroke-width="1.8" fill="url(#pat-ht-fine)"/>
+          <!-- Ring Finger (tucked) -->
+          <path d="M92,180 C78,188 66,198 56,208 C52,212 55,218 62,218 C70,218 80,210 90,202 L106,190 Z" stroke="#1A1A1A" stroke-width="1.6" fill="url(#pat-ht-fine)"/>
+          <!-- Little Finger (pinky) -->
+          <path d="M80,196 C70,205 60,216 52,226 C48,230 52,235 58,235 C64,235 74,226 84,216 L94,204 Z" stroke="#1A1A1A" stroke-width="1.4" fill="url(#pat-ht-fine)"/>
+          <!-- Thumb (relaxed, curving downward) -->
+          <path d="M150,175 C135,190 120,210 115,225 C112,232 116,238 124,238 C132,238 140,230 148,218 L165,190 Z" stroke="#1A1A1A" stroke-width="2" fill="url(#pat-ht-fine)"/>
+
+          <!-- Delicate Hand Hatching & Shading -->
+          <g stroke="#1A1A1A" stroke-width="0.75" opacity="0.3">
+            <line x1="680" y1="260" x2="620" y2="245"/>
+            <line x1="600" y1="240" x2="540" y2="225"/>
+            <line x1="520" y1="220" x2="460" y2="205"/>
+            <line x1="440" y1="200" x2="380" y2="185"/>
+            <line x1="360" y1="180" x2="300" y2="168"/>
+          </g>
+        </svg>
+      </div>
+
+      <!-- Touch FX Elements -->
+      <div class="contact-spark" id="contact-spark"></div>
+      <div class="contact-ring" id="contact-ring"></div>
     </div>
 
-    <div class="intro-tagline">
-      Touch of Innovation
-    </div>
+    <div class="intro-footer-hint">Touch of Innovation</div>
   </div>
 
   <!-- ════════════════════════════════════════
-       MAIN WEBSITE
+       MAIN SITE CONTENT
        ════════════════════════════════════════ -->
-  <div id="site-wrap">
+  <div id="page-content">
   <a href="#main" class="skip-link">Skip to content</a>
 
   <!-- NAVBAR -->
@@ -615,7 +972,8 @@
         <ul class="nav-links">
           <li><a href="#services">Services</a></li>
           <li><a href="#about">About</a></li>
-          <li><a href="#work">Work</a></li>
+          <li><a href="#work">Work (15)</a></li>
+          <li><a href="#principles">Principles</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </div>
@@ -633,15 +991,16 @@
     <button class="mobile-close" id="mobile-close" aria-label="Close menu">&times;</button>
     <a href="#services">Services</a>
     <a href="#about">About</a>
-    <a href="#work">Work</a>
+    <a href="#work">All 15 Projects</a>
+    <a href="#principles">Principles</a>
     <a href="#contact">Contact</a>
-    <a href="https://4tech-9cy.pages.dev/account">Login</a>
+    <a href="https://4tech-9cy.pages.dev/account">Customer Login</a>
   </div>
 
   <main id="main">
 
   <!-- ════════════════════════════════════════
-       HERO — REDESIGNED EXACTLY LIKE PHOTO
+       HERO — THE DEFINING COMPOSITION
        ════════════════════════════════════════ -->
   <section class="hero" id="hero">
     <div class="hero-content">
@@ -650,20 +1009,32 @@
       <p class="hero-sub">We turn engineering ideas into purposeful prototypes—connecting embedded systems, robotics, and RF research with practical, hands-on development.</p>
       <div class="hero-actions">
         <a href="#contact" class="btn btn-p arrow">Get In Touch</a>
+        <a href="#work" class="btn btn-g">Explore All 15 Projects</a>
       </div>
     </div>
 
-    <!-- The Authentic Hands Illustration from the photo -->
-    <div class="hero-hands-wrap" id="hero-hands-trigger" title="Click to replay the touch animation">
-      <img src="assets/hands-hero-2x.png?v=2" alt="Robotic hand reaching to touch human hand — Michelangelo Creation of Adam composition" class="hero-hands-img">
+    <!-- The Rebuilt Whole Arms in Hero (Zero Chopped Boxes) -->
+    <div class="hero-arms-stage" id="hero-arms-interactive" title="Click to replay the touch animation">
+      <!-- Left Robotic Arm -->
+      <div class="hero-arm-left">
+        <svg class="arm-svg" viewBox="0 0 700 360" fill="none">
+          <use href="#arm-left-box svg > *"/>
+        </svg>
+      </div>
+      <!-- Right Human Arm -->
+      <div class="hero-arm-right">
+        <svg class="arm-svg" viewBox="0 0 700 360" fill="none">
+          <use href="#arm-right-box svg > *"/>
+        </svg>
+      </div>
     </div>
 
-    <button class="replay-badge" onclick="playTouchAnimation()" title="Replay intro animation">
+    <button class="replay-control" onclick="triggerTouchSequence()" title="Replay the opening touch animation">
       <span>↺</span> Replay Touch Animation
     </button>
   </section>
 
-  <!-- CAPABILITIES / TRUST BAR (Exact styling from photo) -->
+  <!-- CAPABILITIES BAR -->
   <section class="capabilities">
     <div class="container">
       <p class="cap-label">Trusted disciplines across engineering &amp; research</p>
@@ -672,7 +1043,7 @@
         <span class="cap-item">Robotics &amp; Motion</span>
         <span class="cap-item">RF Engineering</span>
         <span class="cap-item">Automation</span>
-        <span class="cap-item">Electronics</span>
+        <span class="cap-item">Power Electronics</span>
         <span class="cap-item">IoT Systems</span>
         <span class="cap-item">Simulation</span>
         <span class="cap-item">Rapid Prototyping</span>
@@ -680,7 +1051,9 @@
     </div>
   </section>
 
-  <!-- SERVICES -->
+  <!-- ════════════════════════════════════════
+       SERVICES (6 Considered Cards)
+       ════════════════════════════════════════ -->
   <section class="services" id="services">
     <div class="container">
       <div class="services-head reveal">
@@ -694,12 +1067,12 @@
         <div class="card reveal rd1">
           <div class="card-icon"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><circle cx="12" cy="12" r="3"/><path d="M12 4v3M12 17v3M4 12h3M17 12h3"/></svg></div>
           <h3>Embedded Systems</h3>
-          <p>Connect sensors, controllers, and interfaces through practical firmware and hardware integration.</p>
+          <p>Connect sensors, controllers, and interfaces through practical firmware, SPI/I²C buses, and hardware integration.</p>
         </div>
         <div class="card reveal rd2">
           <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M12 2L4 7v10l8 5 8-5V7z"/><circle cx="12" cy="12" r="3"/></svg></div>
           <h3>Robotics &amp; Motion</h3>
-          <p>Explore mechanisms, kinematics, and control strategies with mechanical design and computational studies.</p>
+          <p>Explore mechanisms, kinematics, and control strategies with SOLIDWORKS mechanical design and analytical studies.</p>
         </div>
         <div class="card reveal rd3">
           <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M2 12h4l3-9 6 18 3-9h4"/></svg></div>
@@ -709,23 +1082,25 @@
         <div class="card reveal rd1">
           <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M5 12.5a7 7 0 0114 0"/><path d="M8.5 10.5a4 4 0 018 0"/><circle cx="12" cy="12" r="1.5"/><path d="M12 14v6"/></svg></div>
           <h3>IoT &amp; Automation</h3>
-          <p>Bring device state, environmental observations, and control workflows into clear, usable interfaces.</p>
+          <p>Bring device state, environmental observations, and telemetry workflows into clean, accessible web interfaces.</p>
         </div>
         <div class="card reveal rd2">
           <div class="card-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 3v18"/></svg></div>
           <h3>Prototype Development</h3>
-          <p>Translate a project brief into components, design decisions, milestones, and reviewable engineering work.</p>
+          <p>Translate a project brief into components, schematic decisions, milestones, and reviewable engineering deliverables.</p>
         </div>
         <div class="card reveal rd3">
           <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/><path d="M8 7h8M8 11h5"/></svg></div>
           <h3>Practical Learning</h3>
-          <p>Build understanding through guided work with microcontrollers, simulation, electronics, and system integration.</p>
+          <p>Build understanding through guided work with microcontrollers, circuit simulation, electronics, and system integration.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ABOUT -->
+  <!-- ════════════════════════════════════════
+       ABOUT (The Person & The Practice)
+       ════════════════════════════════════════ -->
   <section class="about" id="about">
     <div class="container">
       <div class="about-grid">
@@ -733,7 +1108,7 @@
           <p class="kicker">Why 4TECH</p>
           <h2 class="section-title">Engineer by study.<br>Builder by instinct.</h2>
           <p>I'm Mohammed Vashir, a B.Tech Electrical and Electronics Engineering student at B.S. Abdur Rahman Crescent Institute of Science and Technology. My work spans embedded systems, robotic mechanisms, and computational research.</p>
-          <p>Based in Kalpakkam, I'm developing 4TECH around a simple principle: make the engineering understandable, keep the progress visible, and let the work speak honestly.</p>
+          <p>Based in Kalpakkam, I'm developing 4TECH around a simple principle: make the engineering understandable, keep the progress visible, and let the work speak honestly. I work across design, code, and hardware to investigate how an idea can become a practical system.</p>
           <p class="edu">Second-year undergraduate · Vandalur, Tamil Nadu</p>
           <div class="about-btns">
             <a href="https://4tech-9cy.pages.dev/portfolio" class="btn btn-ow arrow" style="padding:12px 28px">Explore Portfolio</a>
@@ -746,54 +1121,431 @@
             <div class="stat"><div class="stat-num" data-target="3">0</div><div class="stat-label">Core Skill Disciplines</div></div>
             <div class="stat"><div class="stat-num" data-target="15">0</div><div class="stat-label">Portfolio Records</div></div>
             <div class="stat"><div class="stat-num" data-target="1">0</div><div class="stat-label">Independent Founder</div></div>
-            <p class="stats-note">Portfolio records include work in development and proposed R&D.</p>
+            <p class="stats-note">Portfolio records include active prototypes, hardware integration, and proposed R&amp;D.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- SELECTED WORK -->
+  <!-- ════════════════════════════════════════
+       COMPLETE 15-PROJECT CATALOGUE
+       (All 15 Projects with Filter & Stage Badges)
+       ════════════════════════════════════════ -->
   <section class="work" id="work">
     <div class="container">
       <div class="work-head reveal">
         <div class="work-head-text">
-          <p class="kicker">Selected Work</p>
+          <p class="kicker">Complete Portfolio</p>
           <h2 class="section-title">Questions worth building for.</h2>
-          <p class="section-desc">A selection of prototypes, design work, and computational studies—each with its current development stage.</p>
+          <p class="section-desc">The complete 15-record engineering catalogue—spanning RF instrumentation, robotics kinematics, custom PCB avionics, and sensory computing.</p>
         </div>
-        <a href="https://4tech-9cy.pages.dev/projects" class="btn btn-g arrow">View All Projects</a>
+        <a href="https://4tech-9cy.pages.dev/projects" class="btn btn-g arrow">Open Project Portal</a>
       </div>
-      <div class="work-grid">
-        <article class="project reveal"><a href="https://4tech-9cy.pages.dev/projects/antenna">
-          <div class="project-visual" style="background:linear-gradient(135deg,#1a1a1a,#111)">
-            <svg viewBox="0 0 240 240" width="140" height="140" style="position:relative;z-index:2" aria-hidden="true"><circle cx="120" cy="120" r="80" fill="none" stroke="rgba(255,255,255,.1)" stroke-width=".8"/><circle cx="120" cy="120" r="55" fill="none" stroke="rgba(255,255,255,.15)" stroke-width=".8"/><circle cx="120" cy="120" r="30" fill="none" stroke="rgba(255,255,255,.2)" stroke-width=".8"/><line x1="120" y1="40" x2="120" y2="200" stroke="rgba(255,255,255,.07)" stroke-width=".5"/><line x1="40" y1="120" x2="200" y2="120" stroke="rgba(255,255,255,.07)" stroke-width=".5"/><path d="M120,120 L145,55" stroke="rgba(255,255,255,.4)" stroke-width="2.5" fill="none" stroke-linecap="round"/><path d="M120,120 L170,75" stroke="rgba(255,255,255,.3)" stroke-width="1.8" fill="none" stroke-linecap="round"/><circle cx="120" cy="120" r="4" fill="rgba(255,255,255,.35)"/><rect x="116" y="200" width="8" height="24" rx="2" fill="none" stroke="rgba(255,255,255,.2)" stroke-width="1"/></svg>
+
+      <!-- Category Filter Pills -->
+      <div class="filter-bar reveal">
+        <button class="filter-btn active" data-filter="all">All Projects (15)</button>
+        <button class="filter-btn" data-filter="research">Research Level (7)</button>
+        <button class="filter-btn" data-filter="advanced">Advanced (6)</button>
+        <button class="filter-btn" data-filter="intermediate">Intermediate (2)</button>
+      </div>
+
+      <!-- 15 Complete Project Cards Grid -->
+      <div class="projects-container" id="projects-grid">
+
+        <!-- 1. Antenna -->
+        <article class="project-card reveal" data-category="research">
+          <div class="project-schematic">
+            <svg viewBox="0 0 240 180" fill="none">
+              <circle cx="120" cy="90" r="60" stroke="#444" stroke-width="1" stroke-dasharray="3 3"/>
+              <circle cx="120" cy="90" r="40" stroke="#666" stroke-width="1"/>
+              <circle cx="120" cy="90" r="20" stroke="#888" stroke-width="1.2"/>
+              <line x1="120" y1="20" x2="120" y2="160" stroke="#333" stroke-width="0.8"/>
+              <line x1="50" y1="90" x2="190" y2="90" stroke="#333" stroke-width="0.8"/>
+              <path d="M120,90 L145,45" stroke="#FFF" stroke-width="2.5" stroke-linecap="round"/>
+              <path d="M120,90 L165,60" stroke="#AAA" stroke-width="1.8" stroke-linecap="round"/>
+              <circle cx="120" cy="90" r="4" fill="#FFF"/>
+            </svg>
           </div>
-          <div class="project-meta"><div class="project-stage">Research Level · Prototype Development</div><div class="project-domain">RF Systems / Automation</div><h3>Antenna Radiation Pattern Measurement</h3><p>Coordinating angular motion and RF acquisition to investigate directional antenna response.</p><span class="project-link arrow">View Project</span></div>
-        </a></article>
-        <article class="project reveal rd1"><a href="https://4tech-9cy.pages.dev/projects/robot-arm">
-          <div class="project-visual" style="background:linear-gradient(135deg,#2a2a2a,#181818)">
-            <svg viewBox="0 0 200 200" width="90" height="90" style="position:relative;z-index:2" aria-hidden="true"><line x1="55" y1="165" x2="88" y2="100" stroke="rgba(255,255,255,.3)" stroke-width="3.5" stroke-linecap="round"/><line x1="88" y1="100" x2="132" y2="58" stroke="rgba(255,255,255,.25)" stroke-width="2.8" stroke-linecap="round"/><line x1="132" y1="58" x2="155" y2="45" stroke="rgba(255,255,255,.2)" stroke-width="2" stroke-linecap="round"/><circle cx="55" cy="165" r="6" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="1.5"/><circle cx="88" cy="100" r="5" fill="none" stroke="rgba(255,255,255,.2)" stroke-width="1.5"/><circle cx="132" cy="58" r="4" fill="none" stroke="rgba(255,255,255,.18)" stroke-width="1.5"/></svg>
+          <div class="project-body">
+            <div class="project-badges">
+              <span class="badge-diff research">Research Level</span>
+              <span class="badge-stage">Prototype development</span>
+            </div>
+            <h3>Antenna Radiation Pattern Measurement System</h3>
+            <div class="project-domain">RF Systems / Automation</div>
+            <p>Coordinating angular stepper rotation and logarithmic RF power detection to capture directional antenna lobe radiation profiles.</p>
+            <div class="tech-tags">
+              <span class="tech-tag">ESP32</span><span class="tech-tag">AD8317</span><span class="tech-tag">NEMA17</span><span class="tech-tag">A4988</span><span class="tech-tag">nRF24L01+</span>
+            </div>
+            <a href="https://4tech-9cy.pages.dev/projects/antenna" class="project-action arrow">View Project Record</a>
           </div>
-          <div class="project-meta"><div class="project-stage">Advanced · CAD & Computational Studies</div><div class="project-domain">Robotics / Mechanical</div><h3>Advanced Robotic Arm Systems</h3><p>A five-axis mechanical design alongside analytical and neural approaches to inverse kinematics.</p><span class="project-link arrow">View Project</span></div>
-        </a></article>
-        <article class="project reveal rd2"><a href="https://4tech-9cy.pages.dev/projects/drone">
-          <div class="project-visual" style="background:linear-gradient(135deg,#333,#1e1e1e)">
-            <svg viewBox="0 0 200 200" width="90" height="90" style="position:relative;z-index:2" aria-hidden="true"><rect x="72" y="72" width="56" height="56" rx="4" fill="none" stroke="rgba(255,255,255,.18)" stroke-width="1.5"/><line x1="72" y1="100" x2="32" y2="100" stroke="rgba(255,255,255,.12)" stroke-width="1.2"/><circle cx="32" cy="100" r="14" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="1"/><line x1="128" y1="100" x2="168" y2="100" stroke="rgba(255,255,255,.12)" stroke-width="1.2"/><circle cx="168" cy="100" r="14" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="1"/><line x1="100" y1="72" x2="100" y2="32" stroke="rgba(255,255,255,.12)" stroke-width="1.2"/><circle cx="100" cy="32" r="14" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="1"/><line x1="100" y1="128" x2="100" y2="168" stroke="rgba(255,255,255,.12)" stroke-width="1.2"/><circle cx="100" cy="168" r="14" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="1"/><circle cx="100" cy="100" r="3" fill="rgba(255,255,255,.2)"/></svg>
+        </article>
+
+        <!-- 2. Passive RF Drone Detection -->
+        <article class="project-card reveal" data-category="research">
+          <div class="project-schematic">
+            <svg viewBox="0 0 240 180" fill="none">
+              <rect x="40" y="40" width="160" height="100" rx="6" stroke="#444" stroke-width="1"/>
+              <path d="M50,110 L70,85 L85,100 L110,65 L135,115 L150,90 L170,105 L190,80" stroke="#FFF" stroke-width="1.8" stroke-linecap="round"/>
+              <line x1="40" y1="120" x2="200" y2="120" stroke="#333" stroke-width="1"/>
+            </svg>
           </div>
-          <div class="project-meta"><div class="project-stage">Advanced · Engineering Development</div><div class="project-domain">PCB / Embedded Systems</div><h3>ESP32 Drone Platform</h3><p>A compact ESP32-S3 flight-controller design exploring sensing, power distribution, and brushed-motor control.</p><span class="project-link arrow">View Project</span></div>
-        </a></article>
-        <article class="project reveal rd3"><a href="https://4tech-9cy.pages.dev/projects/sewersense">
-          <div class="project-visual" style="background:linear-gradient(135deg,#3a3a3a,#222)">
-            <svg viewBox="0 0 200 200" width="90" height="90" style="position:relative;z-index:2" aria-hidden="true"><rect x="40" y="60" width="120" height="80" rx="6" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="1.2"/><line x1="40" y1="80" x2="160" y2="80" stroke="rgba(255,255,255,.1)" stroke-width=".8"/><path d="M55,95 L70,110 L85,100 L100,115 L115,95 L130,108 L145,98" fill="none" stroke="rgba(255,255,255,.28)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="60" cy="70" r="3" fill="rgba(255,255,255,.2)"/><circle cx="75" cy="70" r="3" fill="rgba(255,255,255,.15)"/><circle cx="90" cy="70" r="3" fill="rgba(255,255,255,.12)"/></svg>
+          <div class="project-body">
+            <div class="project-badges">
+              <span class="badge-diff research">Research Level</span>
+              <span class="badge-stage">Proposed R&amp;D concept</span>
+            </div>
+            <h3>Passive RF Drone Detection Receiver</h3>
+            <div class="project-domain">RF / Signal Intelligence</div>
+            <p>Non-emitting spectral monitoring architecture detecting FHSS frequency hopping and control links from unmanned aerial vehicles.</p>
+            <div class="tech-tags">
+              <span class="tech-tag">SDR</span><span class="tech-tag">Python</span><span class="tech-tag">HackRF</span><span class="tech-tag">GNU Radio</span><span class="tech-tag">DSP</span>
+            </div>
+            <a href="https://4tech-9cy.pages.dev/projects/passive-rf-drone" class="project-action arrow">View Project Record</a>
           </div>
-          <div class="project-meta"><div class="project-stage">Intermediate · Hardware Integration</div><div class="project-domain">IoT / Environmental Sensing</div><h3>SewerSense</h3><p>An ESP32 sensing project bringing environmental observations and device state into a unified interface.</p><span class="project-link arrow">View Project</span></div>
-        </a></article>
+        </article>
+
+        <!-- 3. RF Direction Finder -->
+        <article class="project-card reveal" data-category="research">
+          <div class="project-schematic">
+            <svg viewBox="0 0 240 180" fill="none">
+              <circle cx="120" cy="90" r="50" stroke="#444" stroke-width="1"/>
+              <circle cx="120" cy="40" r="5" fill="#FFF"/>
+              <circle cx="170" cy="90" r="5" fill="#888"/>
+              <circle cx="120" cy="140" r="5" fill="#888"/>
+              <circle cx="70" cy="90" r="5" fill="#888"/>
+              <line x1="120" y1="90" x2="120" y2="40" stroke="#FFF" stroke-width="2"/>
+            </svg>
+          </div>
+          <div class="project-body">
+            <div class="project-badges">
+              <span class="badge-diff research">Research Level</span>
+              <span class="badge-stage">Proposed R&amp;D concept</span>
+            </div>
+            <h3>RF Direction Finder (Angle of Arrival)</h3>
+            <div class="project-domain">RF Systems / Triangulation</div>
+            <p>Multi-antenna interferometric array calculating differential phase arrival to locate signal beacons and transmission sources.</p>
+            <div class="tech-tags">
+              <span class="tech-tag">Phase Interferometry</span><span class="tech-tag">Pseudo-Doppler</span><span class="tech-tag">RF Switch</span>
+            </div>
+            <a href="https://4tech-9cy.pages.dev/projects/rf-direction-finder" class="project-action arrow">View Project Record</a>
+          </div>
+        </article>
+
+        <!-- 4. Autonomous Disaster Rescue Vehicle -->
+        <article class="project-card reveal" data-category="research">
+          <div class="project-schematic">
+            <svg viewBox="0 0 240 180" fill="none">
+              <rect x="60" y="70" width="120" height="50" rx="8" stroke="#666" stroke-width="1.5"/>
+              <circle cx="85" cy="120" r="14" stroke="#FFF" stroke-width="2"/>
+              <circle cx="120" cy="120" r="14" stroke="#FFF" stroke-width="2"/>
+              <circle cx="155" cy="120" r="14" stroke="#FFF" stroke-width="2"/>
+              <path d="M120,70 L120,45 L135,45" stroke="#FFF" stroke-width="1.8"/>
+            </svg>
+          </div>
+          <div class="project-body">
+            <div class="project-badges">
+              <span class="badge-diff research">Research Level</span>
+              <span class="badge-stage">Proposed R&amp;D concept</span>
+            </div>
+            <h3>Autonomous Disaster Rescue Vehicle</h3>
+            <div class="project-domain">Robotics / Autonomous Systems</div>
+            <p>Rugged tracked unmanned ground vehicle engineered to traverse structural debris zones and stream thermal/lidar mapping telemetry.</p>
+            <div class="tech-tags">
+              <span class="tech-tag">STM32</span><span class="tech-tag">LiDAR</span><span class="tech-tag">SLAM</span><span class="tech-tag">ROS</span><span class="tech-tag">Tracked Drive</span>
+            </div>
+            <a href="https://4tech-9cy.pages.dev/projects/rescue" class="project-action arrow">View Project Record</a>
+          </div>
+        </article>
+
+        <!-- 5. AR Heads-Up Display -->
+        <article class="project-card reveal" data-category="research">
+          <div class="project-schematic">
+            <svg viewBox="0 0 240 180" fill="none">
+              <rect x="50" y="60" width="60" height="40" rx="4" stroke="#FFF" stroke-width="1.5"/>
+              <rect x="130" y="60" width="60" height="40" rx="4" stroke="#FFF" stroke-width="1.5"/>
+              <line x1="110" y1="80" x2="130" y2="80" stroke="#888" stroke-width="2"/>
+              <circle cx="80" cy="80" r="10" stroke="#FFF" stroke-width="1" stroke-dasharray="2 2"/>
+              <circle cx="160" cy="80" r="10" stroke="#FFF" stroke-width="1" stroke-dasharray="2 2"/>
+            </svg>
+          </div>
+          <div class="project-body">
+            <div class="project-badges">
+              <span class="badge-diff research">Research Level</span>
+              <span class="badge-stage">Proposed R&amp;D concept</span>
+            </div>
+            <h3>AR Heads-Up Display Goggles</h3>
+            <div class="project-domain">Embedded / Wearable Optics</div>
+            <p>Binocular optical waveguide wearable overlaying orientation attitude, sensor readings, and navigational waypoints.</p>
+            <div class="tech-tags">
+              <span class="tech-tag">Micro-OLED</span><span class="tech-tag">Waveguide</span><span class="tech-tag">ESP32-S3</span><span class="tech-tag">9-DoF IMU</span>
+            </div>
+            <a href="https://4tech-9cy.pages.dev/projects/ar-hud" class="project-action arrow">View Project Record</a>
+          </div>
+        </article>
+
+        <!-- 6. Wireless EV Charging -->
+        <article class="project-card reveal" data-category="research">
+          <div class="project-schematic">
+            <svg viewBox="0 0 240 180" fill="none">
+              <ellipse cx="120" cy="65" rx="55" ry="18" stroke="#888" stroke-width="1.8"/>
+              <ellipse cx="120" cy="115" rx="55" ry="18" stroke="#FFF" stroke-width="2"/>
+              <path d="M95,85 C95,95 145,85 145,95" stroke="#FFF" stroke-width="1.5" stroke-dasharray="3 3"/>
+            </svg>
+          </div>
+          <div class="project-body">
+            <div class="project-badges">
+              <span class="badge-diff research">Research Level</span>
+              <span class="badge-stage">Design study (low-power)</span>
+            </div>
+            <h3>Wireless Resonant EV Charging System</h3>
+            <div class="project-domain">Power Electronics / Magnetics</div>
+            <p>High-efficiency inductive power transfer using series-resonant tank topologies and high-frequency GaN switching.</p>
+            <div class="tech-tags">
+              <span class="tech-tag">Resonant Coupling</span><span class="tech-tag">GaN FETs</span><span class="tech-tag">Inverter</span><span class="tech-tag">Ferrite</span>
+            </div>
+            <a href="https://4tech-9cy.pages.dev/projects/power" class="project-action arrow">View Project Record</a>
+          </div>
+        </article>
+
+        <!-- 7. Magnetic Anomaly Detector -->
+        <article class="project-card reveal" data-category="research">
+          <div class="project-schematic">
+            <svg viewBox="0 0 240 180" fill="none">
+              <line x1="50" y1="90" x2="190" y2="90" stroke="#444" stroke-width="1"/>
+              <path d="M50,90 Q90,90 110,60 T130,120 Q150,90 190,90" stroke="#FFF" stroke-width="2" fill="none"/>
+              <circle cx="120" cy="90" r="3" fill="#FFF"/>
+            </svg>
+          </div>
+          <div class="project-body">
+            <div class="project-badges">
+              <span class="badge-diff research">Research Level</span>
+              <span class="badge-stage">Proposed R&amp;D concept</span>
+            </div>
+            <h3>Magnetic Anomaly Detector (MAD)</h3>
+            <div class="project-domain">Instrumentation / Magnetometry</div>
+            <p>Differential fluxgate magnetometry platform detecting micro-Tesla subterranean ferromagnetic gradients and voids.</p>
+            <div class="tech-tags">
+              <span class="tech-tag">Fluxgate</span><span class="tech-tag">24-Bit ADC</span><span class="tech-tag">Low-Noise OpAmps</span><span class="tech-tag">DSP</span>
+            </div>
+            <a href="https://4tech-9cy.pages.dev/projects/magnetic-anomaly" class="project-action arrow">View Project Record</a>
+          </div>
+        </article>
+
+        <!-- 8. Robotic Arm -->
+        <article class="project-card reveal" data-category="advanced">
+          <div class="project-schematic">
+            <svg viewBox="0 0 240 180" fill="none">
+              <line x1="60" y1="145" x2="95" y2="85" stroke="#FFF" stroke-width="3.5" stroke-linecap="round"/>
+              <line x1="95" y1="85" x2="145" y2="45" stroke="#AAA" stroke-width="2.8" stroke-linecap="round"/>
+              <line x1="145" y1="45" x2="175" y2="35" stroke="#888" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="60" cy="145" r="7" stroke="#FFF" stroke-width="2"/>
+              <circle cx="95" cy="85" r="6" stroke="#FFF" stroke-width="1.8"/>
+              <circle cx="145" cy="45" r="5" stroke="#FFF" stroke-width="1.5"/>
+            </svg>
+          </div>
+          <div class="project-body">
+            <div class="project-badges">
+              <span class="badge-diff advanced">Advanced</span>
+              <span class="badge-stage">CAD &amp; computation studies</span>
+            </div>
+            <h3>Advanced Robotic Arm Systems</h3>
+            <div class="project-domain">Robotics / Kinematics / CAD</div>
+            <p>A 5-axis articulated mechanical design exploring analytical geometric inverse kinematics and MLP neural network trajectory models.</p>
+            <div class="tech-tags">
+              <span class="tech-tag">SOLIDWORKS</span><span class="tech-tag">Python</span><span class="tech-tag">Kinematics</span><span class="tech-tag">PyTorch/MLP</span>
+            </div>
+            <a href="https://4tech-9cy.pages.dev/projects/robot-arm" class="project-action arrow">View Project Record</a>
+          </div>
+        </article>
+
+        <!-- 9. Drone Platform -->
+        <article class="project-card reveal" data-category="advanced">
+          <div class="project-schematic">
+            <svg viewBox="0 0 240 180" fill="none">
+              <rect x="90" y="65" width="60" height="50" rx="4" stroke="#FFF" stroke-width="1.5"/>
+              <line x1="90" y1="90" x2="45" y2="90" stroke="#888" stroke-width="1.5"/>
+              <line x1="150" y1="90" x2="195" y2="90" stroke="#888" stroke-width="1.5"/>
+              <circle cx="45" cy="90" r="16" stroke="#FFF" stroke-width="1.2"/>
+              <circle cx="195" cy="90" r="16" stroke="#FFF" stroke-width="1.2"/>
+              <circle cx="120" cy="35" r="16" stroke="#FFF" stroke-width="1.2"/>
+              <circle cx="120" cy="145" r="16" stroke="#FFF" stroke-width="1.2"/>
+            </svg>
+          </div>
+          <div class="project-body">
+            <div class="project-badges">
+              <span class="badge-diff advanced">Advanced</span>
+              <span class="badge-stage">Engineering development</span>
+            </div>
+            <h3>ESP32 Drone Platform &amp; Flight Controller</h3>
+            <div class="project-domain">PCB Design / Embedded Systems</div>
+            <p>Custom PCB flight controller with onboard 6-axis IMU filtering, LiPo power regulation, and coreless motor MOSFET drive stages.</p>
+            <div class="tech-tags">
+              <span class="tech-tag">KiCad</span><span class="tech-tag">ESP32-S3</span><span class="tech-tag">1S LiPo</span><span class="tech-tag">PID Loop</span><span class="tech-tag">MOSFETs</span>
+            </div>
+            <a href="https://4tech-9cy.pages.dev/projects/drone" class="project-action arrow">View Project Record</a>
+          </div>
+        </article>
+
+        <!-- 10. Autonomous Vision Tracking -->
+        <article class="project-card reveal" data-category="advanced">
+          <div class="project-schematic">
+            <svg viewBox="0 0 240 180" fill="none">
+              <rect x="50" y="35" width="140" height="110" rx="6" stroke="#555" stroke-width="1.2"/>
+              <circle cx="120" cy="90" r="30" stroke="#FFF" stroke-width="1.8"/>
+              <line x1="120" y1="50" x2="120" y2="130" stroke="#FFF" stroke-width="1" stroke-dasharray="2 2"/>
+              <line x1="80" y1="90" x2="160" y2="90" stroke="#FFF" stroke-width="1" stroke-dasharray="2 2"/>
+            </svg>
+          </div>
+          <div class="project-body">
+            <div class="project-badges">
+              <span class="badge-diff advanced">Advanced</span>
+              <span class="badge-stage">Proposed R&amp;D concept</span>
+            </div>
+            <h3>Autonomous Vision Tracking Platform</h3>
+            <div class="project-domain">Edge AI / Computer Vision</div>
+            <p>Closed-loop pan-tilt optical servomechanism utilizing edge computer vision models to track moving objects with PID compensation.</p>
+            <div class="tech-tags">
+              <span class="tech-tag">OpenCV</span><span class="tech-tag">Edge AI</span><span class="tech-tag">Pan-Tilt Gimbal</span><span class="tech-tag">PID</span>
+            </div>
+            <a href="https://4tech-9cy.pages.dev/projects/vision-tracking" class="project-action arrow">View Project Record</a>
+          </div>
+        </article>
+
+        <!-- 11. RF Shielding / Faraday Cage -->
+        <article class="project-card reveal" data-category="advanced">
+          <div class="project-schematic">
+            <svg viewBox="0 0 240 180" fill="none">
+              <rect x="60" y="40" width="120" height="100" stroke="#FFF" stroke-width="2"/>
+              <line x1="80" y1="40" x2="80" y2="140" stroke="#666" stroke-width="1"/>
+              <line x1="100" y1="40" x2="100" y2="140" stroke="#666" stroke-width="1"/>
+              <line x1="120" y1="40" x2="120" y2="140" stroke="#666" stroke-width="1"/>
+              <line x1="140" y1="40" x2="140" y2="140" stroke="#666" stroke-width="1"/>
+              <line x1="160" y1="40" x2="160" y2="140" stroke="#666" stroke-width="1"/>
+            </svg>
+          </div>
+          <div class="project-body">
+            <div class="project-badges">
+              <span class="badge-diff advanced">Advanced</span>
+              <span class="badge-stage">Proposed R&amp;D concept</span>
+            </div>
+            <h3>RF Shielding Effectiveness / Faraday Cage</h3>
+            <div class="project-domain">RF / Electromagnetic Compatibility</div>
+            <p>Specialized anechoic test enclosure measuring insertion loss, signal attenuation, and EMI shielding effectiveness up to GHz ranges.</p>
+            <div class="tech-tags">
+              <span class="tech-tag">Copper Mesh</span><span class="tech-tag">Anechoic Foam</span><span class="tech-tag">EMC/EMI</span><span class="tech-tag">Spectrum Analyzer</span>
+            </div>
+            <a href="https://4tech-9cy.pages.dev/projects/rf-shielding" class="project-action arrow">View Project Record</a>
+          </div>
+        </article>
+
+        <!-- 12. Composite Drop-Test -->
+        <article class="project-card reveal" data-category="advanced">
+          <div class="project-schematic">
+            <svg viewBox="0 0 240 180" fill="none">
+              <line x1="80" y1="20" x2="80" y2="160" stroke="#666" stroke-width="2"/>
+              <line x1="160" y1="20" x2="160" y2="160" stroke="#666" stroke-width="2"/>
+              <rect x="90" y="50" width="60" height="25" fill="#FFF"/>
+              <rect x="80" y="145" width="80" height="15" stroke="#FFF" stroke-width="1.5"/>
+            </svg>
+          </div>
+          <div class="project-body">
+            <div class="project-badges">
+              <span class="badge-diff advanced">Advanced</span>
+              <span class="badge-stage">Proposed R&amp;D concept</span>
+            </div>
+            <h3>Composite Material Drop-Test System</h3>
+            <div class="project-domain">Structural Dynamics / Materials</div>
+            <p>Instrumented impact tower with solenoid release and optical velocity gates to benchmark fracture energy in composite plates.</p>
+            <div class="tech-tags">
+              <span class="tech-tag">Accelerometer</span><span class="tech-tag">Optical Gate</span><span class="tech-tag">Solenoid</span><span class="tech-tag">Data Logger</span>
+            </div>
+            <a href="https://4tech-9cy.pages.dev/projects/composite-drop-test" class="project-action arrow">View Project Record</a>
+          </div>
+        </article>
+
+        <!-- 13. Digital Night-Vision Monocular -->
+        <article class="project-card reveal" data-category="advanced">
+          <div class="project-schematic">
+            <svg viewBox="0 0 240 180" fill="none">
+              <rect x="50" y="70" width="90" height="40" rx="6" stroke="#FFF" stroke-width="1.8"/>
+              <path d="M140,75 L185,60 L185,120 L140,105 Z" stroke="#888" stroke-width="1.5"/>
+              <circle cx="95" cy="90" r="10" stroke="#FFF" stroke-width="1.2"/>
+            </svg>
+          </div>
+          <div class="project-body">
+            <div class="project-badges">
+              <span class="badge-diff advanced">Advanced</span>
+              <span class="badge-stage">Proposed R&amp;D concept</span>
+            </div>
+            <h3>Digital Night-Vision Monocular</h3>
+            <div class="project-domain">Optoelectronics / Low-Light</div>
+            <p>Near-infrared digital optical pipeline utilizing high-sensitivity CMOS sensors and active 850nm/940nm VCSEL illumination.</p>
+            <div class="tech-tags">
+              <span class="tech-tag">Low-Light CMOS</span><span class="tech-tag">IR VCSEL</span><span class="tech-tag">OLED Microdisplay</span>
+            </div>
+            <a href="https://4tech-9cy.pages.dev/projects/night-vision" class="project-action arrow">View Project Record</a>
+          </div>
+        </article>
+
+        <!-- 14. SewerSense -->
+        <article class="project-card reveal" data-category="intermediate">
+          <div class="project-schematic">
+            <svg viewBox="0 0 240 180" fill="none">
+              <rect x="50" y="55" width="140" height="70" rx="8" stroke="#FFF" stroke-width="1.5"/>
+              <path d="M70,95 L90,110 L110,85 L130,105 L150,75 L170,95" stroke="#FFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="80" cy="72" r="3" fill="#FFF"/><circle cx="95" cy="72" r="3" fill="#AAA"/><circle cx="110" cy="72" r="3" fill="#666"/>
+            </svg>
+          </div>
+          <div class="project-body">
+            <div class="project-badges">
+              <span class="badge-diff">Intermediate</span>
+              <span class="badge-stage">Hardware integration</span>
+            </div>
+            <h3>SewerSense Hazardous Gas Monitor</h3>
+            <div class="project-domain">IoT / Environmental Sensing</div>
+            <p>ESP32 environmental sensing node providing multi-gas observation (MQ series), ambient humidity/temp, and real-time alert dispatch.</p>
+            <div class="tech-tags">
+              <span class="tech-tag">ESP32</span><span class="tech-tag">MQ Sensors</span><span class="tech-tag">DHT22</span><span class="tech-tag">MAX30102</span><span class="tech-tag">Telemetry</span>
+            </div>
+            <a href="https://4tech-9cy.pages.dev/projects/sewersense" class="project-action arrow">View Project Record</a>
+          </div>
+        </article>
+
+        <!-- 15. Desktop Wind Tunnel -->
+        <article class="project-card reveal" data-category="intermediate">
+          <div class="project-schematic">
+            <svg viewBox="0 0 240 180" fill="none">
+              <path d="M40,65 L100,75 L160,75 L200,60" stroke="#666" stroke-width="1.5"/>
+              <path d="M40,115 L100,105 L160,105 L200,120" stroke="#666" stroke-width="1.5"/>
+              <ellipse cx="130" cy="90" rx="18" ry="6" fill="#FFF"/>
+              <line x1="40" y1="90" x2="90" y2="90" stroke="#FFF" stroke-width="1.5" stroke-dasharray="4 2"/>
+            </svg>
+          </div>
+          <div class="project-body">
+            <div class="project-badges">
+              <span class="badge-diff">Intermediate</span>
+              <span class="badge-stage">Proposed R&amp;D concept</span>
+            </div>
+            <h3>Desktop Subscale Wind Tunnel</h3>
+            <div class="project-domain">Aerodynamics / Fluid Dynamics</div>
+            <p>Transparent flow visualization test bench with honey-comb laminar flow straightener and differential Pitot tube pressure readout.</p>
+            <div class="tech-tags">
+              <span class="tech-tag">Pitot Tube</span><span class="tech-tag">Differential Pressure</span><span class="tech-tag">Fluid Mechanics</span>
+            </div>
+            <a href="https://4tech-9cy.pages.dev/projects/wind-tunnel" class="project-action arrow">View Project Record</a>
+          </div>
+        </article>
+
       </div>
     </div>
   </section>
 
-  <!-- PRINCIPLES -->
+  <!-- ════════════════════════════════════════
+       WORKING PRINCIPLES (Honest Methodology)
+       ════════════════════════════════════════ -->
   <section class="principles" id="principles">
     <div class="container">
       <div class="principles-head reveal">
@@ -802,14 +1554,28 @@
         <p class="section-desc">A practical process keeps the scope understandable and the engineering grounded.</p>
       </div>
       <div class="principles-grid">
-        <div class="principle reveal rd1"><div class="principle-num">01</div><h3>Define the question</h3><p>Clarify the problem, constraints, and intended outcome before selecting components or promising a result.</p></div>
-        <div class="principle reveal rd2"><div class="principle-num">02</div><h3>Make progress visible</h3><p>Break the work into reviewable stages, document decisions, and distinguish a concept from a tested subsystem.</p></div>
-        <div class="principle reveal rd3"><div class="principle-num">03</div><h3>Leave understanding behind</h3><p>Explain the design, share the relevant documentation, and make the next development step clear.</p></div>
+        <div class="principle reveal rd1">
+          <div class="principle-num">01</div>
+          <h3>Define the question</h3>
+          <p>Clarify the engineering problem, physical constraints, and intended outcome before selecting components or promising a delivery date.</p>
+        </div>
+        <div class="principle reveal rd2">
+          <div class="principle-num">02</div>
+          <h3>Make progress visible</h3>
+          <p>Break the work into reviewable stages, document trade-offs, and distinguish a conceptual CAD model from a tested hardware subsystem.</p>
+        </div>
+        <div class="principle reveal rd3">
+          <div class="principle-num">03</div>
+          <h3>Leave understanding behind</h3>
+          <p>Explain the design rationale, share transparent schematics and firmware repositories, and make the next iteration step immediately obvious.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- CTA -->
+  <!-- ════════════════════════════════════════
+       CTA SECTION
+       ════════════════════════════════════════ -->
   <section class="cta" id="contact">
     <div class="container">
       <div class="cta-box reveal">
@@ -818,9 +1584,9 @@
         <p class="section-desc">Bring a project idea, a technical challenge, or a prototype brief. Let's define a practical first step together.</p>
         <div class="cta-actions">
           <a href="https://wa.me/919360108408" target="_blank" rel="noopener noreferrer" class="btn btn-w arrow">Start on WhatsApp</a>
-          <a href="#work" class="btn btn-ow">View Our Work</a>
+          <a href="#work" class="btn btn-ow">Explore 15 Projects</a>
         </div>
-        <a href="mailto:mohammedvashir75@gmail.com" class="cta-email">Send an Email</a>
+        <a href="mailto:mohammedvashir75@gmail.com" class="cta-email">Send an Email to Founder</a>
         <p class="cta-location">Kalpakkam, Tamil Nadu 603102 · India</p>
       </div>
     </div>
@@ -828,14 +1594,37 @@
 
   </main>
 
-  <!-- FOOTER -->
+  <!-- ════════════════════════════════════════
+       FOOTER
+       ════════════════════════════════════════ -->
   <footer class="footer">
     <div class="container">
       <div class="footer-grid">
-        <div class="footer-brand"><a href="#" class="wordmark">4TECH</a><p>Independent engineering across embedded systems, robotics, RF, and practical prototyping. Built with curiosity. Developed with care.</p></div>
-        <div class="footer-col"><h4>Explore</h4><ul><li><a href="#services">Services</a></li><li><a href="#about">About</a></li><li><a href="#work">Selected Work</a></li><li><a href="#contact">Contact</a></li></ul></div>
-        <div class="footer-col"><h4>More from 4TECH</h4><ul><li><a href="https://4tech-9cy.pages.dev/projects">Project Library</a></li><li><a href="https://4tech-9cy.pages.dev/portfolio">Founder Portfolio</a></li><li><a href="https://4tech-9cy.pages.dev/resume">Résumé</a></li><li><a href="https://4tech-9cy.pages.dev/account">Customer Login</a></li></ul></div>
-        <div class="footer-col"><h4>Connect</h4><p style="font-size:13px;color:var(--t3);margin-bottom:14px">Kalpakkam, Tamil Nadu 603102</p>
+        <div class="footer-brand">
+          <a href="#" class="wordmark">4TECH</a>
+          <p>Independent engineering across embedded systems, robotics, RF, and practical prototyping. Built with curiosity. Developed with care.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#about">About Founder</a></li>
+            <li><a href="#work">All 15 Projects</a></li>
+            <li><a href="#principles">Working Principles</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>More from 4TECH</h4>
+          <ul>
+            <li><a href="https://4tech-9cy.pages.dev/projects">Project Directory</a></li>
+            <li><a href="https://4tech-9cy.pages.dev/portfolio">Founder Portfolio</a></li>
+            <li><a href="https://4tech-9cy.pages.dev/resume">Résumé</a></li>
+            <li><a href="https://4tech-9cy.pages.dev/account">Customer Login</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <p style="font-size:13px;color:var(--t3);margin-bottom:14px">Kalpakkam, Tamil Nadu 603102</p>
           <div class="social-row">
             <a href="https://wa.me/919360108408" target="_blank" rel="noopener noreferrer" class="soc" aria-label="WhatsApp" title="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2a10 10 0 00-8.6 15.1L2 22l5.1-1.3A10 10 0 1012 2z"/></svg></a>
             <a href="https://github.com/4techno" target="_blank" rel="noopener noreferrer" class="soc" aria-label="GitHub" title="GitHub"><svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg></a>
@@ -845,116 +1634,187 @@
           </div>
         </div>
       </div>
-      <div class="footer-bottom"><p>&copy; 2026 4TECH. All rights reserved. <a href="https://4tech-9cy.pages.dev/privacy">Privacy</a></p></div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 4TECH. All rights reserved. <a href="https://4tech-9cy.pages.dev/privacy">Privacy</a></p>
+      </div>
     </div>
   </footer>
-  </div><!-- /site-wrap -->
+  </div><!-- /page-content -->
 
+  <!-- ════════════════════════════════════════
+       CLIENT JAVASCRIPT
+       (Buttery Smooth Animation & Project Filter)
+       ════════════════════════════════════════ -->
   <script>
   (function(){
     'use strict';
     var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+    var curtain = document.getElementById('intro-curtain');
     var stage = document.getElementById('intro-stage');
-    var viewport = document.getElementById('intro-viewport');
-    var spark = document.getElementById('touch-spark');
-    var ripple = document.getElementById('touch-ripple');
-    var siteWrap = document.getElementById('site-wrap');
+    var spark = document.getElementById('contact-spark');
+    var ring = document.getElementById('contact-ring');
+    var pageContent = document.getElementById('page-content');
 
-    window.playTouchAnimation = function() {
-      if (!stage) return;
-      stage.style.display = 'flex';
-      stage.style.opacity = '1';
-      stage.style.visibility = 'visible';
-      viewport.classList.remove('touching');
-      spark.classList.remove('ignite');
-      ripple.classList.remove('ignite');
-      siteWrap.classList.remove('visible');
+    /* ── CINEMATIC TOUCH SEQUENCE ── */
+    window.triggerTouchSequence = function() {
+      if (!curtain) return;
+      curtain.style.display = 'flex';
+      curtain.style.opacity = '1';
+      curtain.style.visibility = 'visible';
+      stage.classList.remove('stage-touching');
+      spark.classList.remove('detonate');
+      ring.classList.remove('detonate');
+      pageContent.classList.remove('revealed');
       document.body.style.overflow = 'hidden';
 
-      // Reset hand transforms
-      var rHand = document.getElementById('intro-robot-hand');
-      var hHand = document.getElementById('intro-human-hand');
-      rHand.style.transform = 'translate(-100vw, -50%)';
-      hHand.style.transform = 'translate(100vw, -50%)';
+      // 1. Reset arms to offscreen positions
+      var armL = document.getElementById('arm-left-box');
+      var armR = document.getElementById('arm-right-box');
+      armL.style.transform = 'translate3d(-100vw, -50%, 0)';
+      armR.style.transform = 'translate3d(100vw, -50%, 0)';
 
+      // 2. Glide arms in smoothly (hardware-accelerated cubic-bezier)
       setTimeout(function() {
-        // Hands slide in toward center
-        viewport.classList.add('touching');
+        stage.classList.add('stage-touching');
       }, 100);
 
-      // Hands index fingers meet at exactly 2100ms
+      // 3. Fingertips meet at 2200ms -> Detonate touch spark and soundwave ring
       setTimeout(function() {
-        spark.classList.add('ignite');
-        ripple.classList.add('ignite');
-      }, 2100);
+        spark.classList.add('detonate');
+        ring.classList.add('detonate');
+      }, 2200);
 
-      // Open the website
+      // 4. Reveal site smoothly
       setTimeout(function() {
-        siteWrap.classList.add('visible');
-        stage.style.opacity = '0';
+        pageContent.classList.add('revealed');
+        curtain.style.opacity = '0';
         document.body.style.overflow = '';
-      }, 2800);
+      }, 2900);
 
       setTimeout(function() {
-        stage.style.visibility = 'hidden';
-      }, 3600);
+        curtain.style.visibility = 'hidden';
+      }, 3800);
     };
 
-    if (!reduced && stage) {
-      window.playTouchAnimation();
+    if (!reduced && curtain) {
+      window.triggerTouchSequence();
     } else {
-      if (stage) stage.style.display = 'none';
-      siteWrap.classList.add('visible');
+      if (curtain) curtain.style.display = 'none';
+      pageContent.classList.add('revealed');
     }
 
-    // Allow clicking the hero hands to replay the touch animation!
-    var heroTrigger = document.getElementById('hero-hands-trigger');
-    if (heroTrigger) {
-      heroTrigger.addEventListener('click', function() {
-        window.playTouchAnimation();
+    // Hero arms trigger replay
+    var heroInteractive = document.getElementById('hero-arms-interactive');
+    if (heroInteractive) {
+      heroInteractive.addEventListener('click', function() {
+        window.triggerTouchSequence();
       });
     }
 
-    /* ── NAV SCROLL ── */
+    /* ── PROJECT CATEGORY FILTER ── */
+    var filterBtns = document.querySelectorAll('.filter-btn');
+    var projectCards = document.querySelectorAll('.project-card');
+
+    filterBtns.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        filterBtns.forEach(function(b) { b.classList.remove('active'); });
+        this.classList.add('active');
+
+        var filter = this.getAttribute('data-filter');
+
+        projectCards.forEach(function(card) {
+          if (filter === 'all' || card.getAttribute('data-category') === filter) {
+            card.style.display = 'flex';
+            setTimeout(function() { card.style.opacity = '1'; card.style.transform = 'none'; }, 20);
+          } else {
+            card.style.opacity = '0';
+            card.style.transform = 'scale(0.96)';
+            setTimeout(function() { card.style.display = 'none'; }, 250);
+          }
+        });
+      });
+    });
+
+    /* ── NAVBAR SCROLL ── */
     var nav = document.getElementById('nav');
-    var tick = false;
-    window.addEventListener('scroll', function(){
-      if(!tick){requestAnimationFrame(function(){nav.classList.toggle('scrolled',window.scrollY>50);tick=false;});tick=true;}
-    },{passive:true});
+    var ticking = false;
+    window.addEventListener('scroll', function() {
+      if (!ticking) {
+        requestAnimationFrame(function() {
+          nav.classList.toggle('scrolled', window.scrollY > 50);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, { passive: true });
 
     /* ── MOBILE MENU ── */
-    var hb = document.getElementById('hamburger');
+    var hamburger = document.getElementById('hamburger');
     var menu = document.getElementById('mobile-menu');
-    var mc = document.getElementById('mobile-close');
-    function om(){menu.classList.add('open');hb.setAttribute('aria-expanded','true');document.body.style.overflow='hidden';mc.focus();}
-    function cm(){menu.classList.remove('open');hb.setAttribute('aria-expanded','false');document.body.style.overflow='';hb.focus();}
-    hb.addEventListener('click',om);
-    mc.addEventListener('click',cm);
-    menu.querySelectorAll('a').forEach(function(l){l.addEventListener('click',cm);});
-    document.addEventListener('keydown',function(e){if(e.key==='Escape'&&menu.classList.contains('open'))cm();});
+    var closeBtn = document.getElementById('mobile-close');
+    function openMenu() { menu.classList.add('open'); hamburger.setAttribute('aria-expanded','true'); document.body.style.overflow='hidden'; closeBtn.focus(); }
+    function closeMenu() { menu.classList.remove('open'); hamburger.setAttribute('aria-expanded','false'); document.body.style.overflow=''; hamburger.focus(); }
+    hamburger.addEventListener('click', openMenu);
+    closeBtn.addEventListener('click', closeMenu);
+    menu.querySelectorAll('a').forEach(function(link) { link.addEventListener('click', closeMenu); });
+    document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && menu.classList.contains('open')) closeMenu(); });
 
     /* ── SCROLL REVEAL ── */
-    if(!reduced){
-      var obs=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:.15,rootMargin:'0px 0px -40px 0px'});
-      document.querySelectorAll('.reveal').forEach(function(el){obs.observe(el);});
+    if (!reduced) {
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+      document.querySelectorAll('.reveal').forEach(function(el) { observer.observe(el); });
     } else {
-      document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('visible');});
+      document.querySelectorAll('.reveal').forEach(function(el) { el.classList.add('visible'); });
     }
 
-    /* ── STAT COUNTER ── */
-    var nums=document.querySelectorAll('.stat-num[data-target]');
-    if(reduced){nums.forEach(function(el){el.textContent=el.dataset.target;});}
-    else{
-      var counted=new WeakSet();
-      var so=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting&&!counted.has(e.target)){counted.add(e.target);var el=e.target,t=+el.dataset.target,s=performance.now(),d=1500;function f(n){var p=Math.min((n-s)/d,1);el.textContent=Math.round((1-Math.pow(1-p,3))*t);if(p<1)requestAnimationFrame(f);else el.textContent=t;}requestAnimationFrame(f);so.unobserve(el);}});},{threshold:.5});
-      nums.forEach(function(el){so.observe(el);});
+    /* ── STAT COUNTERS ── */
+    var statNums = document.querySelectorAll('.stat-num[data-target]');
+    if (reduced) {
+      statNums.forEach(function(el) { el.textContent = el.dataset.target; });
+    } else {
+      var counted = new WeakSet();
+      var statObs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting && !counted.has(entry.target)) {
+            counted.add(entry.target);
+            var el = entry.target;
+            var target = +el.dataset.target;
+            var start = performance.now();
+            var duration = 1500;
+            function tick(now) {
+              var progress = Math.min((now - start) / duration, 1);
+              var eased = 1 - Math.pow(1 - progress, 3);
+              el.textContent = Math.round(eased * target);
+              if (progress < 1) requestAnimationFrame(tick);
+              else el.textContent = target;
+            }
+            requestAnimationFrame(tick);
+            statObs.unobserve(el);
+          }
+        });
+      }, { threshold: 0.5 });
+      statNums.forEach(function(el) { statObs.observe(el); });
     }
 
-    /* ── SMOOTH SCROLL ── */
-    document.querySelectorAll('a[href^="#"]').forEach(function(a){
-      a.addEventListener('click',function(e){var t=document.querySelector(this.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:reduced?'auto':'smooth',block:'start'});}});
+    /* ── SMOOTH ANCHOR SCROLL ── */
+    document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+      anchor.addEventListener('click', function(e) {
+        var target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' });
+        }
+      });
     });
+
   })();
   </script>
 </body>
